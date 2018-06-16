@@ -10,6 +10,7 @@ Cette section concerne les informations à propos de cette FAQ.
  - [Puis-je me fier aux informations présentées dans cette FAQ ?](#puis-je-me-fier-aux-informations-présentées-dans-cette-faq-)
  - [Puis-je utiliser cette FAQ pour apprendre le C++ ?](#puis-je-utiliser-cette-faq-pour-apprendre-le-c-)
  - [Comment puis-je contribuer à cette FAQ ?](#comment-puis-je-contribuer-à-cette-faq-)
+ - [Puis-je demander l'ajout d'une nouvelle question à la FAQ ?](#puis-je demander-l'ajout-d'une-nouvelle-question-à-la-faq-)
  - [Comment puis-je signaler une erreur ou une imprécision ?](#comment-puis-je-signaler-une-erreur-ou-une-imprécision-)
 
 ## Pourquoi cette FAQ ?
@@ -46,8 +47,18 @@ Elle se contente de répondre aux questions que les développeurs de tout niveau
 
 ## Comment puis-je contribuer à cette FAQ ?
 
-**En cours d'écriture**
+Si vous souhaitez contribuer à cette FAQ, faites un fork de ce dépôt, créez une branche et ajoutez vos modification. Il vous suffit ensuite de lancer une pull-request sur github pour demander l'ajout de vos modification sur la branche originale.
+
+Vous pouvez également [proposer de nouvelles questions](#puis-je demander-l'ajout-d'une-nouvelle-question-à-la-faq-) si vous n'avez pas les compétences ou le temps pour rédiger vous-même la réponse.
+
+Si vous voulez simplement donner votre avis sur la formulation, l'approche ou le contenu d'une question, tournez vous également vers le système d'*issues* de github.
+
+## Puis-je demander l'ajout d'une nouvelle question à la FAQ ?
+
+Tout à fait !
+
+Pour cela, utilisez le système d'*issues* de github pour demander l'ajout d'une question. Veuillez vous assurer que la question n'est pas présente dans la FAQ, parfois certaines questions sont simplement déjà présente dans une autre section de la FAQ que celle où vous vous attendiez à la trouver.
 
 ## Comment puis-je signaler une erreur ou une imprécision ?
 
-**En cours d'écriture**
+Vous pouvez signaler une erreur dans la FAQ en créant une *issue* sur le dépôt de la FAQ.
