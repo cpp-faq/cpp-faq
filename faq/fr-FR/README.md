@@ -1,4 +1,4 @@
 # Index
 
- - [FAQ](00 - FAQ/README.md).
+ - [FAQ](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/00%20-%20FAQ).
  - [Le langage C++](01 - Le Langage C++/README.md)
