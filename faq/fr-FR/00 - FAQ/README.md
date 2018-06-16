@@ -10,7 +10,7 @@ Cette section concerne les informations à propos de cette FAQ.
  - [Puis-je me fier aux informations présentées dans cette FAQ ?](#puis-je-me-fier-aux-informations-présentées-dans-cette-faq-)
  - [Puis-je utiliser cette FAQ pour apprendre le C++ ?](#puis-je-utiliser-cette-faq-pour-apprendre-le-c-)
  - [Comment puis-je contribuer à cette FAQ ?](#comment-puis-je-contribuer-à-cette-faq-)
- - [Puis-je demander l'ajout d'une nouvelle question à la FAQ ?](#puis-je demander-l'ajout-d'une-nouvelle-question-à-la-faq-)
+ - [Puis-je demander l'ajout d'une nouvelle question à la FAQ ?](#puis-je-demander-lajout-dune-nouvelle-question-à-la-faq-)
  - [Comment puis-je signaler une erreur ou une imprécision ?](#comment-puis-je-signaler-une-erreur-ou-une-imprécision-)
 
 ## Pourquoi cette FAQ ?
@@ -49,9 +49,11 @@ Elle se contente de répondre aux questions que les développeurs de tout niveau
 
 Si vous souhaitez contribuer à cette FAQ, faites un fork de ce dépôt, créez une branche et ajoutez vos modification. Il vous suffit ensuite de lancer une pull-request sur github pour demander l'ajout de vos modification sur la branche originale.
 
-Vous pouvez également [proposer de nouvelles questions](#puis-je demander-l'ajout-d'une-nouvelle-question-à-la-faq-) si vous n'avez pas les compétences ou le temps pour rédiger vous-même la réponse.
+Vous pouvez également [proposer de nouvelles questions](#puis-je-demander-lajout-dune-nouvelle-question-à-la-faq-) si vous n'avez pas les compétences ou le temps pour rédiger vous-même la réponse.
 
 Si vous voulez simplement donner votre avis sur la formulation, l'approche ou le contenu d'une question, tournez vous également vers le système d'*issues* de github.
+
+Pour plus d'information sur la manière de contribuer à la FAQ, consultez la [page dédiée](../CONTRIBUTE.md).
 
 ## Puis-je demander l'ajout d'une nouvelle question à la FAQ ?
 
