@@ -20,7 +20,7 @@ int main()
 Ici, l'instruction ```return``` est même optionnelle. Par convention, retourner ```0``` signifie que le programme s'est exécuté correctement.
 
 #### Liens et compléments
- - [Quels sont les prototypes autorisés pour la fonction main ?]()
+ - [Quels sont les prototypes autorisés pour la fonction main ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
 ## A quoi ressemble le programme "Hello World" en C++ ?
 
