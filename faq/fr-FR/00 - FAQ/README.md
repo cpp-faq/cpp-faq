@@ -37,6 +37,7 @@ Les auteurs contribuant à cette FAQ font tout leur possible pour fournir des in
 
 Cette FAQ est collaborative. Si vous relevez une erreur ou une imprécision, n'hésitez pas à la corriger.
 
+#### Liens et compléments
  - [Comment puis-je signaler une erreur ou une imprécision ?](#comment-puis-je-signaler-une-erreur-ou-une-imprécision-)
 
 ## Puis-je utiliser cette FAQ pour apprendre le C++ ?
