@@ -12,6 +12,22 @@ Un programme C++ doit être composé d'une et une seule fonction ```main```. Cet
 
 ## Quels sont les prototypes autorisés pour la fonction main ?
 
+La norme indique que la fonction ```main``` doit toujours retourner un ```int```. Ainsi la signature ```void main()``` est invalide.
+
+Il existe deux prototypes définis par la norme :
+ - ```int main()``` : fonction ```main``` sans paramètres.
+ - ```int main(int argc, char* argv[])``` : fonction ```main``` avec arguments.
+
+Dans la première version, les arguments du programme sont ignorés.
+
+Dans la seconde, le premier argument est un entier contenant le nombre d'argument du programme (```argc``` signifiant **argument count**). Le second, ```argv```, est un tableau (C-style) de caractère contenant les différents arguments passés au programme (```argv``` signifiant **argument vector**).
+
+Dans la très large majorité des plateformes, le nom du programme (ou plutôt le chemin de l'exécutable) est passé comme premier argument. Avec l'appel d'un programme sur Linux de cette manière, ```./prog --verbose -n=42 "hello"```, ```argv``` sera composé de cinq éléments : ```./prog```, ```--verbose```, ```-n=42``` et ```"hello"```.
+
+Le standard C++ autorise également l'ajout d'arguments supplémentaires, définis par l'implémentation. La signature ```int main(int argc, char* argv[], char* envp[])``` est fréquente sur les systèmes supportant la norme POSIX, tels que Linux et permet de passer au programme les variables d'environnement.
+
+*NOTE : la signature ```int main(void)``` est également valide puisqu'elle est strictement équivalente à ```int main()``` [Quelle est la différence entre foo() et foo(void)](github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md).*
+
 ## Que dois-je mettre dans la fonction main ?
 
 La question est complexe et dépends fortement du problème à traiter.
@@ -48,4 +64,8 @@ Souvent, la fonction ```main``` contient l'analyse des arguments, l'initialisati
 
 ## Dois-je intercepter toutes les exception dans la fonction main ?
 
+**En cours d'écriture**
+
 ## Puis-je utiliser le function-try-block avec la fonction main ?
+
+**En cours d'écriture**
