@@ -24,3 +24,16 @@ Il existe en effet plusieurs plateformes webs permettant de compiler du code C++
  - [http://rextester.com/l/cpp_online_compiler_gcc](http://rextester.com/l/cpp_online_compiler_gcc) et [http://rextester.com/l/cpp_online_compiler_visual](http://rextester.com/l/cpp_online_compiler_visual).
 
 Les compilateurs en lignes constituent un bon moyen d'essayer un morceau de code ou de tester des fonctionnalité sans nécessiter la mise en place d'un environnement de programmation. Néanmoins, ils souffrent de certaines limitations et ne sont pas aussi configurable qu'un environnement personnel. Les bibliothèques tierces sont notamment difficile voir impossible à utiliser et la subdivision du programme en fichiers n'est que partiellement disponible. Évitez donc d'utiliser un compilateur en ligne pour un véritable projet.
+
+
+## Quel est le meilleur compilateur C++ ?
+
+## Qu'est ce que g++ ?
+
+## Qu'est-ce que gcc et GCC ?
+
+En général, **GCC** fait référence à *GNU Compiler Collection*, la suite de compilateur du projet *GNU (GNU's Not Unix)*, tandis que **gcc** correspond à *GNU C Complier*.
+
+**gcc** et **g++**, font donc partie des compilateurs de la suite **GCC** respectivement pour les langages C et C++.
+
+Ces définitions ne sont pas universelles. GCC signifiait également *GNU C Compiler* à l'origine, lorsqu'il consistait simplement en un compilateur C. GCC inclue maintenant des compilateurs pour les langages C, Fortran, C++, Ada et Go.
