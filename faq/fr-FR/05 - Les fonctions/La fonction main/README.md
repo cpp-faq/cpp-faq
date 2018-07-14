@@ -8,7 +8,18 @@
 
 La fonction ```main``` est le point d'entrée d'un programme C++. Le programme commence au début de la fonction et se termine à la fin de celle-ci (ou presque : [Quel processus ont lieu en dehors de la fonction main ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)).
 
-Un programme C++ doit être composé d'une et une seule fonction ```main```. Cette fonction doit être une fonction libre de l'espace de nom global et possède certaines particularités ([[EN] cppreference.com | Main function](http://en.cppreference.com/w/cpp/language/main_function)).
+Un programme C++ doit être composé d'une et une seule fonction  ```main```. Cette fonction doit être une fonction libre de l'espace de nom global et possède de certaines particularités. Voici un résumé :
+ - La fonction ```main``` ne peut pas être utilisées où que ce soit dans le programme :
+  - elle ne peut pas être appelée récursivement.
+  - son adresse ne peut pas être récupérée.
+ - Elle ne peut pas être pré-déclarée, ni surchargée.
+ - Elle ne peut être marquée avec ```delete```, ```default```, ```inline```, ```static``` ou ```constexpr```, ni avec un linkage C (depuis **C++17**).
+ - L'instruction ```return``` n'est pas obligatoire, si elle est absente, ```return 0;``` est implicite.
+ - L'exécution du ```return``` revient à sortir normalement de la fonction puis appeler ```std::exit``` avec comme argument le code de retour de la fonction ([A quoi sert std::exit ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)).
+ - Le type de retour de la fonction ```main``` ne peut être déduit avec ```auto``` (depuis **C++14**).
+
+#### Liens et compléments
+ - [[EN] cppreference.com | Main function](http://en.cppreference.com/w/cpp/language/main_function)
 
 ## Quels sont les prototypes autorisés pour la fonction main ?
 
@@ -68,4 +79,35 @@ Souvent, la fonction ```main``` contient l'analyse des arguments, l'initialisati
 
 ## Puis-je utiliser le function-try-block avec la fonction main ?
 
-**En cours d'écriture**
+Le **function-try-block** est utilisable avec la fonction main. Cela étant, les exception levées par les destructeurs des objets statiques ne sont pas interceptées :
+
+```cpp
+#include <iostream>
+#include <stdexcept>
+
+struct A
+{
+    ~A() noexcept(false) {
+        std::cout << "A's dtor\n";
+        throw std::exception{};
+    }   
+};
+
+A a;
+
+int main()
+try {
+/* ... */
+}
+catch (std::exception& e) {
+    /* ne va pas catch l'exepction levée par le dtor de a. */
+    std::cout << "exception caught : " << e.what() << ".\n";
+}
+```
+
+Dans cet exemple, l'exception levée par le destructeur de ```a``` ne sera pas interceptée par le **function-try-block** de la fonction main. Voici un exemple d'exécution sous GCC 8.1.0 :
+```
+terminate called after throwing an instance of 'std::exception'
+  what():  std::exception
+A's dtor
+```
