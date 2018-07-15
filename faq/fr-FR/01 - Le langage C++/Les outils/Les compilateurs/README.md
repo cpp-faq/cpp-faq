@@ -25,15 +25,22 @@ Il existe en effet plusieurs plateformes webs permettant de compiler du code C++
 
 Les compilateurs en lignes constituent un bon moyen d'essayer un morceau de code ou de tester des fonctionnalité sans nécessiter la mise en place d'un environnement de programmation. Néanmoins, ils souffrent de certaines limitations et ne sont pas aussi configurable qu'un environnement personnel. Les bibliothèques tierces sont notamment difficile voir impossible à utiliser et la subdivision du programme en fichiers n'est que partiellement disponible. Évitez donc d'utiliser un compilateur en ligne pour un véritable projet.
 
-
 ## Quel est le meilleur compilateur C++ ?
 
 ## Qu'est ce que g++ ?
 
 ## Qu'est-ce que gcc et GCC ?
 
-En général, **GCC** fait référence à *GNU Compiler Collection*, la suite de compilateur du projet *GNU (GNU's Not Unix)*, tandis que **gcc** correspond à *GNU C Complier*.
+En général, **GCC** fait référence à *GNU Compiler Collection*, la suite de compilateurs du projet *GNU (GNU's Not Unix)*, tandis que **gcc** correspond à *GNU C Complier*.
 
-**gcc** et **g++**, font donc partie des compilateurs de la suite **GCC** respectivement pour les langages C et C++.
+En pratique **gcc** et **g++** sont des front-end de **GCC**, respectivement pour les langages C et C++.
 
-Ces définitions ne sont pas universelles. GCC signifiait également *GNU C Compiler* à l'origine, lorsqu'il consistait simplement en un compilateur C. GCC inclue maintenant des compilateurs pour les langages C, Fortran, C++, Ada et Go.
+Ces définitions ne sont pas universelles. GCC signifiait également *GNU C Compiler* à l'origine, lorsqu'il consistait simplement en un compilateur C. GCC inclue maintenant des front-end pour les langages C, Fortran, C++, Ada et Go.
+
+## Qu'est-ce que MSVC ?
+
+**MSVC** (MicroSoft Visual C++) est le compilateur de Microsoft, il est fourni par défaut avec *Visual Studio*.
+
+Tout comme *Visual Studio*, **MSVC** n'est disponible que sur Windows. Il permet en revanche de cibler d'autres architectures.
+
+**MSVC** a eu pendant longtemps la réputation de ne pas très bien supporter le standard C++. De nos jour, la conformité au standard du compilateur de Microsoft s'est grandement améliorée.
