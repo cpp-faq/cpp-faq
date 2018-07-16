@@ -27,6 +27,20 @@ Cette FAQ donne une brève description de quelques-uns des IDE les plus connus p
 #### Liens et compléments
  - [Quel est le meilleur compilateur C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
+## Qu'est-ce que QtCreator ?
+
+**QtCreator** est l'IDE multi-plateforme proposé par le *Qt Projet*. Gratuit et open-source, il fait partie du SDK (Software Development Kit) de *Qt*.
+
+Il est particulièrement adapté au développement d'application utilisant le Framework Qt puisqu'il inclue des outils tes que *QtDesigner*, le système de ressources ou encore la documentation Qt intégrée. Il peut cependant être utilisé pour du développement C++ sans Qt.
+
+Outre le **C++** et la bibliothèque **Qt**, il supporte aussi le *JavaScript* et le *QML*, un langage spécifique à *Qt*.
+
+![QtCreator Screenshot](rcs/qtcreator.png "QtCreator Screenshot")
+
+#### Liens et compléments
+ - [Dépôt Github de QtCreator](https://github.com/qtproject/qt-creator)
+ - [Qu'est-ce que Qt ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+
 ## Qu'est-ce que Visual Studio ?
 
 **Visual Studio** est l'IDE de Microsoft, uniquement disponible sur la plateforme Windows. L'édition *Community* gratuite est disponible pour tous les étudiants, enseignants, développeurs indépendants et entreprises de moins de 5 développeurs.
