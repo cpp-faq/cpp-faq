@@ -27,6 +27,19 @@ Cette FAQ donne une brève description de quelques-uns des IDE les plus connus p
 #### Liens et compléments
  - [Quel est le meilleur compilateur C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
+## Qu'est-ce que CLion ?
+
+**CLion** est un IDE C et C++ multi-plateforme et propriétaire proposé par *JetBrains*.
+
+Il s’appuie sur la plateforme **Intellij** de JetBrains (sur lesquels sont basés les IDE de JetBrains : *PhPStorm*, *Intellij IDEA*, *AppCode* etc…).
+
+Outre le C et le C++, **CLion** supporte aussi d'autres langages tels que Kotlin, Python, Rust, Swift etc...
+
+![CLion Screenshot](rcs/clion.png "CLion Screenshot")
+
+#### Liens et compléments
+ - [Téléchargement de CLion](https://www.jetbrains.com/clion/download/)
+
 ## Qu'est-ce que QtCreator ?
 
 **QtCreator** est l'IDE multi-plateforme proposé par le *Qt Projet*. Gratuit et open-source, il fait partie du SDK (Software Development Kit) de *Qt*.
