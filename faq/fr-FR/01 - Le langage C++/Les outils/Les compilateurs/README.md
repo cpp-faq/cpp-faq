@@ -27,7 +27,7 @@ Les compilateurs en lignes constituent un bon moyen d'essayer un morceau de code
 
 ## Quel est le meilleur compilateur C++ ?
 
-Tout comme la question [Le C++ est-il meilleur que ... ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md), cette question n'a pas vraiment de sens.
+Tout comme la question [Quel est le meilleur IDE C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md), cette question n'a pas vraiment de sens.
 
 Chaque compilateur a des avantages et des inconveignents qui font que le choix du compilateur dépends d'un grand nombre de facteur : architecture, plateforme, convention de l'entreprise, habitude des développeurs...
 
