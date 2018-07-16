@@ -12,7 +12,7 @@ Les outils proposés sont variables, on retrouve souvent un éditeur de texte, u
 
 Parfois, ces outils peuvent être interchangés. Par exemple, les IDEs C++ proposent souvent de modifier le compilateur utilisé.
 
-Beaucoup d'IDE sont disponibles pour le C++, parmi lesquels *Visual Studio*, *Eclipse*, *XCode*, *Code::Block*, *Netbeans*, *QtCreator*, *KDevelop*, *CLion*...
+Beaucoup d'IDE sont disponibles pour le C++, parmi lesquels  *CLion*, *Code::Block*, *KDevelop*, *Eclipse*, *Netbeans*, *QtCreator*, *Visual Studio*, *XCode*...
 
 Il est tout à fait possible de se passer d'un IDE et de se contenter d'un "simple" éditeur de texte (vim, Emacs, Sublim Text, Atom, Visual Code, Notepad++ etc...). Il est alors nécessaire d'utiliser séparément les différents outils habituellement inclus dans l'IDE.
 
@@ -26,3 +26,15 @@ Cette FAQ donne une brève description de quelques-uns des IDE les plus connus p
 
 #### Liens et compléments
  - [Quel est le meilleur compilateur C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+
+## Qu'est-ce que Visual Studio ?
+
+**Visual Studio** est l'IDE de Microsoft, uniquement disponible sur la plateforme Windows. L'édition *Community* gratuite est disponible pour tous les étudiants, enseignants, développeurs indépendants et entreprises de moins de 5 développeurs.
+
+VS fourni par défaut le compilateur **MSVC**. Il propose un grand nombre de fonctionnalité, notamment son debugger qui a une excellente réputation.
+
+Il supporte également le développement en C, les langages .NET (C#, C++/CLI, F#, ASP.NET...), JavaScript et Python.
+
+#### Liens et compléments
+ - [Microsft Visual Studio](https://visualstudio.microsoft.com/fr/)
+ - [Qu'est-ce que MSVC ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
