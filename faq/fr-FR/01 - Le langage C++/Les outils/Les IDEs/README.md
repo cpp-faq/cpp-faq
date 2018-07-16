@@ -35,6 +35,8 @@ VS fourni par défaut le compilateur **MSVC**. Il propose un grand nombre de fon
 
 Il supporte également le développement en C, les langages .NET (C#, C++/CLI, F#, ASP.NET...), JavaScript et Python.
 
+![Visual Studio Screenshot](rcs/vs.png "Visual Studio Screenshot")
+
 #### Liens et compléments
  - [Microsft Visual Studio](https://visualstudio.microsoft.com/fr/)
  - [Qu'est-ce que MSVC ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
