@@ -33,3 +33,42 @@ int main()
 }
 ```
 Ce code affichera: ```-1 0 1 12 13 11```
+
+## Qu’est-ce qu’une enum class (énumération fortement typée) ?
+
+Les énumération fortement typées (*strong-typed enums*) ont été introduite avec le standard **C++11**.
+
+L’objectif est de proposer un typage fort pour les énumérations de manière à les englober dans un espace de nom et à éviter les conversions automatiques non voulues.
+
+Pour déclarer une énumération fortement typée, il faut utiliser le mot clef ```class``` (ou ```struct```, indifféremment) :
+```cpp
+enum Color { red, blue, green }; // déclaration d’une énumération.
+enum class SColor { red, blue, green };  // déclaration d’une énumération fortement typée.
+Une enum class n’est pas directement convertible en entier :
+Color c;
+int i = c; // OK.
+bool b{red && blue ^ green}; // OK, même si ça n’a pas de sens.
+
+SColor sc;
+i = sc; // Erreur.
+i = static_cast<int>(sc); // OK.
+if(sc == 2) // Erreur.
+    /*do something*/;
+Bool b{red && blue ^ green}; // Erreur.
+```
+
+Cette sécurité du type à plusieurs avantage, notamment pour éviter d’avoir des valeurs ne correspondant à aucun énumérateur ou pour permettre des surcharges de fonction qui ne seraient pas toujours possible avec des énumérations du **C++03**.
+
+Autre avantage des ```enum class``` est le fait que les énumérateurs appartiennent à un espace de nom (*namespace*) :
+```cpp
+enum class SColor { red, blue, green };
+
+int main()
+{   
+    auto red{ SColor::red };
+}
+```
+
+Il est nécessaire d’accéder aux énumérateurs à l’aide de l’opérateur de résolution de portée. Les identificateurs de énumérateurs sont donc libres pour le namespace global.
+
+Avant **C++11**, il était commun d’envelopper des enum à l’intérieur de namespace ou de classes de manière à proposer cette syntaxe et éviter de polluer le namespace global.
