@@ -72,3 +72,9 @@ int main()
 Il est nécessaire d’accéder aux énumérateurs à l’aide de l’opérateur de résolution de portée. Les identificateurs de énumérateurs sont donc libres pour le namespace global.
 
 Avant **C++11**, il était commun d’envelopper des enum à l’intérieur de namespace ou de classes de manière à proposer cette syntaxe et éviter de polluer le namespace global.
+
+## Comment choisir entre enum et enum class ?
+
+Les ```enum class``` devraient être privilégiées autant que possible par rapport aux enum classiques parce qu’elles sont plus pratiques à utiliser (pas de risque de collision de nom, pas de comportement inattendu) et plus sécurisées (absence de conversion implicite notamment).
+
+Il arrive que les énumérations simples soient préférées aux ```enum class``` lorsque l’arithmétique entier est nécessaire ou pour des raisons de compatibilité.
