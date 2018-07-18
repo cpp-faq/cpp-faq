@@ -13,7 +13,7 @@
 La déclaration d’une énumération se fait à l’aide du mot clef enum :
 
 ```cpp
-enum MonEnum {ELEM_1, ELEM_2, ELEM_3} ;
+enum MonEnum {ELEM_1, ELEM_2, ELEM_3};
 ```
 
 Il est possible de préciser une valeur entière à un élément de l’énumération (appelé « énumérateur ») :
