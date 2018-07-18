@@ -22,9 +22,10 @@ Cette question est tout à fait subjective, même s'il serait possible d'argumen
 
 Certains développeurs préféreront un IDE spécifique, d'autres utiliseront différents IDE suivant leurs besoins et d'autres encore choisiront de ne pas utiliser d'IDE.
 
-Cette FAQ donne une brève description de quelques-uns des IDE les plus connus pour le langage C++, mais la meilleur façon de faire un choix est encore de les essayer par soi-même.
+Cette FAQ donne une brève description de quelques-uns des IDE les plus connus pour le langage C++, mais la meilleur façon de faire son choix reste encore de les essayer par soi-même.
 
 #### Liens et compléments
+ - [[EN] Comparaison des IDE - Wikipédia](https://en.wikipedia.org/wiki/Comparison_of_integrated_development_environments#C/C++)
  - [Quel est le meilleur compilateur C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
 ## Qu'est-ce que CLion ?
@@ -39,6 +40,20 @@ Outre le C et le C++, **CLion** supporte aussi d'autres langages tels que Kotlin
 
 #### Liens et compléments
  - [Téléchargement de CLion](https://www.jetbrains.com/clion/download/)
+
+## Qu'est-ce que Kdevelop ?
+
+**KDevelop** est un IDE multi-plateforme et open-source développé par un projet communautaire issu de *KDE*.
+
+L’environnement de bureau *KDE* (Plasma) étant basé sur *Qt*, **KDevelop** propose directement le support de Qt (C++/Qt, QML etc…) et propose un back-end pour d'autres langages tels que C, Objective-C, JavaScript etc.
+
+**KDevelop** utilise en interne le modèle de code **CLang**.
+
+![KDevelop Screenshot](rcs/kdevelop.png "KDevelop Screenshot")
+
+#### Liens et compléments
+ - [Téléchargement de KDevelop](https://www.kdevelop.org/download)
+ - [Dépôt Github de KDevelop](https://github.com/KDE/kdevelop)
 
 ## Qu'est-ce que QtCreator ?
 
@@ -58,9 +73,7 @@ Outre le **C++** et la bibliothèque **Qt**, il supporte aussi le *JavaScript* e
 
 **Visual Studio** est l'IDE de Microsoft, uniquement disponible sur la plateforme Windows. L'édition *Community* gratuite est disponible pour tous les étudiants, enseignants, développeurs indépendants et entreprises de moins de 5 développeurs.
 
-VS fourni par défaut le compilateur **MSVC**. Il propose un grand nombre de fonctionnalité, notamment son debugger qui a une excellente réputation.
-
-Il supporte également le développement en C, les langages .NET (C#, C++/CLI, F#, ASP.NET...), JavaScript et Python.
+VS fourni par défaut le compilateur **MSVC**. Il supporte également le développement en C, les langages .NET (C#, C++/CLI, F#, ASP.NET...), JavaScript et Python.
 
 ![Visual Studio Screenshot](rcs/vs.png "Visual Studio Screenshot")
 
