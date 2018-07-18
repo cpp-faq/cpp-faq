@@ -41,6 +41,18 @@ Outre le C et le C++, **CLion** supporte aussi d'autres langages tels que Kotlin
 #### Liens et compléments
  - [Téléchargement de CLion](https://www.jetbrains.com/clion/download/)
 
+
+## Qu'est-ce que Code::Blocks ?
+
+**Code::Blocks** est un IDE C, C++ et Fortran open-source et multi-plateforme développé par The Code::Blocks team depuis 2005.
+
+Il supporte plusieurs compilateurs tels que Clang, GCC et MSVC.
+
+![Code::Blocks Screenshot](rcs/cb.png "Code::Blocks Screenshot")
+
+#### Liens et compléments
+ - [Téléchargement de Code::Blocks](http://www.codeblocks.org/downloads)
+
 ## Qu'est-ce que Kdevelop ?
 
 **KDevelop** est un IDE multi-plateforme et open-source développé par un projet communautaire issu de *KDE*.
