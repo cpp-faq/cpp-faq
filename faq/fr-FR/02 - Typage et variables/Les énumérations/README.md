@@ -78,3 +78,37 @@ Avant **C++11**, il était commun d’envelopper des enum à l’intérieur de n
 Les ```enum class``` devraient être privilégiées autant que possible par rapport aux enum classiques parce qu’elles sont plus pratiques à utiliser (pas de risque de collision de nom, pas de comportement inattendu) et plus sécurisées (absence de conversion implicite notamment).
 
 Il arrive que les énumérations simples soient préférées aux ```enum class``` lorsque l’arithmétique entier est nécessaire ou pour des raisons de compatibilité.
+
+## Quel est l’avantage des énumérations par rapport aux constantes entières et aux constantes de préprocesseur ?
+
+Comparons les deux approches :
+```cpp
+enum class Days1 : unsigned { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
+
+namespace Days2
+{
+    constexpr const unsigned Monday     { 0 };
+    constexpr const unsigned Tuesday    { 1 };
+    constexpr const unsigned Wednesday  { 2 };
+    constexpr const unsigned Thursday   { 3 };
+    constexpr const unsigned Friday     { 4 };
+    constexpr const unsigned Saturday   { 5 };
+    constexpr const unsigned Sunday     { 6 };
+}
+
+int main()
+{
+    std::cout << (unsigned)Days1::Monday << " " << Days2::Friday << std::endl;
+}
+```
+
+Affiche : ```0 4```
+
+Les deux constructions précédentes ```Days1``` (énumération) et ```Days2``` (constantes de compilation) sont équivalente. Les énumérateurs sont des constantes de compilation, sont déclarée ```const``` et sont implémentés en terme d’entiers non signé.
+
+Cependant, on n’échappe pas aux conversions implicites avec ```Days2```. De plus, l'```enum``` nous garantit dans cet exemple que tous les énumérateurs ont une valeur différentes, mais si ```Thursday``` valait 1 par exemple, le compilateur n’aurait pas pu nous avertir de cette erreur.
+
+On se rend compte que les énumérations sont plus pratiques à utiliser dans ce genre de cas. La syntaxe est plus courte et le compilateur nous propose une sécurité accrue qu’avec des constantes dont la valeur est déclarée à la main.
+
+#### Liens et compléments
+ - [Comment choisir entre const et #define ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
