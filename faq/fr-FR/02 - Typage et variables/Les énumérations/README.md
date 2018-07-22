@@ -195,3 +195,25 @@ int main()
 Affiche : ```Hello World```.
 
 Dans cette version simpliste, les énumérateurs sont déclaré comme variable membre statique (```constexpr``` également puisque c’est possible pour les chaînes de caractère). Cette solution perds certains des avantage de l'```enum``` ([Quel est l’avantage des énumérations par rapport aux constantes entières et aux constantes de préprocesseur ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)).
+
+## Est-ce que les énumérations peuvent définir des fonctions et des variables membres ?
+
+Non, en *C++* les énumérations ne sont pas des classes (pas même les **enum class**) et il n’est pas possible de définir des variables/fonctions membres pour une enum comment on l'aurait fait en **Java** par exemple.
+
+Cependant, il est tout à fait possible de fournir des fonctions libres qui agissent sur les énumérations. On peut même regrouper l’énumération et les fonctions relatives dans un espace de nom :
+
+```cpp
+namespace Direction
+{
+    enum Dir { Left, Right, Top, Bottom };
+
+    Dir getOpposite(const Dir& dir);
+    std::string toString(const Dir& dir);   
+}
+
+int main()
+{
+    auto right = Direction::getOpposite(Direction::Left);
+    std::cout << Direction::toString(Direction::Top) << std::endl;
+}
+```
