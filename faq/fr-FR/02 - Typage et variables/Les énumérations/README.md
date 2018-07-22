@@ -142,3 +142,56 @@ Cette syntaxe ressemble à de l'héritage, mais il **n'y a pas** d'héritage dan
 
 enum Test : std::int8_t {ERROR = 257}; // GCC (6.3.0) : error: enumerator value 257 is outside the range of underlying type 'int8_t {aka signed char}'
 ```
+
+## Est-il possible de créer des énumérations de types réels ou même de classes ?
+
+En C++, les énumérations ne peuvent être que de types entiers et il n’est pas possible de créer des énumérations de ```double``` ou de ```string``` par exemple :
+
+```cpp
+enum : double {}; // Erreur.
+enum : std::string {}; // Erreur.
+enum { STR_ENUMERATOR = "ENUM"}; // Erreur
+```
+
+Certaines méthodes permettent de simuler une énumération d’un autre type. Par exemple, il est possible de mapper une ```enum``` sur un tableau :
+```cpp
+enum QUALITY_VAR { VERYLOW, LOW, MEDIUM, HIGH, VERYHIGH };
+std::array Quality = { "Very Low", "Low", "Medium", "High", "Very High" };
+
+int main()
+{
+    std::cout << Quality[VERYLOW] << std::endl;
+    std::cout << Quality[HIGH] << std::endl;
+}
+```
+
+Affiche :
+```
+Very Low
+High
+```
+Dans cet exemple les énumérateurs servent d’index au tableau contenant les valeurs des énumérateurs de notre « énumération de string ».
+
+Les conteneurs tels que ```std::map``` peuvent également servir à obtenir un équivalent des ```enum```. La clef serait alors l’équivalent du nom d’un énumérateur qui aurait sa valeur associée. Cependant, l’utilisation de ```std::map``` serait bien plus coûteuse qu’un simple accès dans un tableau.
+
+D’autres techniques plus complexes utilisent les macros et/ou les templates pour simuler des énumérations de types non entiers.
+Une autre solution est d’utiliser une structure qui contient des constantes de compilation. Le nom de la constante correspond au nom d’un énumérateur :
+```cpp
+#include <iostream>
+#include <string>
+
+struct StrEnum
+{
+   static constexpr const char* HELLO{"Hello"};
+   static constexpr const char* WORLD{"World"};
+};
+
+int main()
+{
+    std::cout << StrEnum::HELLO << " " << StrEnum::WORLD << std::endl;
+}
+```
+
+Affiche : ```Hello World```.
+
+Dans cette version simpliste, les énumérateurs sont déclaré comme variable membre statique (```constexpr``` également puisque c’est possible pour les chaînes de caractère). Cette solution perds certains des avantage de l'```enum``` ([Quel est l’avantage des énumérations par rapport aux constantes entières et aux constantes de préprocesseur ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)).
