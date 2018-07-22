@@ -125,3 +125,20 @@ Si aucun type n’est précisé, la norme indique ceci :
 The underlying type of an enumeration is an integral type that can represent all the enumerator values defined in the enumeration. It is implementation-defined which integral type is used as the underlying type for an enumeration except that the underlying type shall not be larger than int unless the value of an enu- merator cannot fit in an int or unsigned int. If the enumerator-list is empty, the underlying type is as if the enumeration had a single enumerator with value 0. The value of sizeof() applied to an enu- meration type, an object of enumeration type, or an enumerator, is the value of sizeof() applied to the underlying type.
 
 En simplifiant, la taille d’une énumération est **implementation-defined**. La norme précise simplement que le type utilisé doit être un type entier et ne pas dépasser la taille d’un ```int``` sauf s’il n’est pas possible de stocker toutes les énumérateurs de l’énumération dans un ```int```.
+
+## Comment définir le type d'une énumération ?
+
+Depuis **C++11**, il est possible de préciser le type sous-jacent d'une énumération avec cette syntaxe :
+
+```cpp
+enum E1 : char {} ; // E1 est une énumération de type char.
+enum class E2 : long {} ; E2 est une énumération fortement typée (enum class) de type long.
+```
+
+Cette syntaxe ressemble à de l'héritage, mais il **n'y a pas** d'héritage dans ce cas. Si la valeur d'un énumérateur ne peut tenir dans le type spécifié, le compilateur affichera une erreur. Dans l'exemple, 257 ne peut pas être encodé avec seulement 8 bits :
+
+```cpp
+#include <cstdint>
+
+enum Test : std::int8_t {ERROR = 257}; // GCC (6.3.0) : error: enumerator value 257 is outside the range of underlying type 'int8_t {aka signed char}'
+```
