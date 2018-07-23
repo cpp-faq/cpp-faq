@@ -217,3 +217,25 @@ int main()
     std::cout << Direction::toString(Direction::Top) << std::endl;
 }
 ```
+
+## Pourquoi les enum sont parfois utilisée à la place de constantes ?
+
+En effet, vous verrez dans beaucoup d’ancien code C++ des codes comme ceux-ci :
+```cpp
+struct MyArray {
+    enum : unsigned { size = 1000 };
+    double tab[size];
+};
+```
+Dans cet exemple, une énumération anonyme est utilisée pour définir la constante size, cette technique a été surnommé le ***enum hack***. Depuis **C++11**, ```constexpr``` permet souvent de remplacer une énumération :
+```cpp
+struct MyArray2 {
+    static constexpr unsigned size{ 1000 };  
+    double tab[size];
+};
+```
+
+Cette seconde version conserve les propriétés qui nous intéressent : ```size``` est une constante **compile-time** et **immuable** (```constexpr```), ```size``` est une variable de classe (```static```) et ```size``` est directement convertible en un nombre entier non signé.
+
+La raison est que dans de vielles versions du langage, les variables membres des classes ne pouvaient pas être à la fois ```static``` et ```const```. Le **enum hack** permettait donc d’avoir une variable constante (et également **compile-time** ce qui n’était pas possible autrement avant le C++11 et l’introduction du mot clef ```constexpr```).
+```
