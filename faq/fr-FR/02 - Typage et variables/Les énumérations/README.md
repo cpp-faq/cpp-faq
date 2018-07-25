@@ -2,7 +2,15 @@
 
 ### Sommaire
 
-**En cours d'écriture**
+- [Qu'est-ce qu'une énumération ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#quest-ce-quune-%C3%A9num%C3%A9ration-)
+- [Comment déclarer une enum en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#comment-d%C3%A9clarer-une-enum-en-c-)
+- [Qu’est-ce qu’une enum class (énumération fortement typée) ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#quest-ce-quune-enum-class%C3%A9num%C3%A9ration-fortement-typ%C3%A9e-)
+- [Comment choisir entre enum et enum class ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#comment-choisir-entre-enum-et-enum-class)
+- [Quel est l’avantage des énumérations par rapport aux constantes entières et aux constantes de préprocesseur ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#quel-est-lavantage-des-%C3%A9num%C3%A9rations-par-rapport-aux-constantes-enti%C3%A8reset-aux-constantes-de-pr%C3%A9processeur-)
+- [Quelle est le type et la taille d'une enum ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#quelle-est-le-type-et-la-taille-dune-enum-)
+- [Comment définir le type d'une énumération ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#comment-d%C3%A9finir-le-type-dune-%C3%A9num%C3%A9ration-)
+- [Est-il possible de créer des énumérations de types réels ou même de classes ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#est-il-possible-de-cr%C3%A9er-des-%C3%A9num%C3%A9rations-de-types-r%C3%A9els-ou-m%C3%AAme-de-classes)
+- [Est-ce que les énumérations peuvent définir des fonctions et des variables membres ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/02%20-%20Typage%20et%20variables/Les%20%C3%A9num%C3%A9rations#est-ce-que-les-%C3%A9num%C3%A9rations-peuvent-d%C3%A9finir-des-fonctions-et-des-variables-membres)
 
 ## Qu'est-ce qu'une énumération ?
 
