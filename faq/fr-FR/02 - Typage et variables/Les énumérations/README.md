@@ -14,7 +14,18 @@
 
 ## Qu'est-ce qu'une énumération ?
 
-**En cours d'écriture**
+Une énumération est un type entier qui ne contient qu'un nombre spécifié d'énumérateur, c'est à dire de valeurs (nommées) possibles :
+
+```cpp
+enum Day {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday};
+
+int main()
+{
+    std::cout << Sunday;
+}
+```
+
+Ces valeurs constantes sont très utiles pour décrire un nombre limité d'état possible. 
 
 ## Comment déclarer une enum en C++ ?
 
