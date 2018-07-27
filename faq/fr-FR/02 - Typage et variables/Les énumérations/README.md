@@ -25,7 +25,7 @@ int main()
 }
 ```
 
-Ces valeurs constantes sont très utiles pour décrire un nombre limité d'état possible. 
+Ces valeurs constantes sont très utiles pour décrire un nombre limité d'état possible.
 
 ## Comment déclarer une enum en C++ ?
 

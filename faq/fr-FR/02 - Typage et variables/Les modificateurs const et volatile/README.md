@@ -16,3 +16,9 @@ Ce mot-clef n'existe pas en C++ et c'est d'ailleurs l'une des rares incompatibil
  - [[EN] cppreference.com | restrict type qualifier](https://en.cppreference.com/w/c/language/restrict)
  - [[EN] wikipedia.org | Restrict](https://fr.wikipedia.org/wiki/Restrict)
  - [Un programme C est-il valide en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+
+## Quelle est la différence entre const et constexpr ?
+
+Le mot clef ```const``` permet de représenter la constance (l’immuabilité) d’un objet. Il est utilisé comme modificateur de type ou pour spécifier des fonctions membres constantes.
+
+Le mot clef ```constexpr``` permet de déclarer des expressions constantes (constant expression), c’est-à-dire des expressions pouvant être évaluées à la compilation plutôt qu’à l’exécution. Une expression constante est implicitement const.
