@@ -17,6 +17,41 @@ Ce mot-clef n'existe pas en C++ et c'est d'ailleurs l'une des rares incompatibil
  - [[EN] wikipedia.org | Restrict](https://fr.wikipedia.org/wiki/Restrict)
  - [Un programme C est-il valide en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
+## Quelle est la différence entre const int et int const ?
+
+```const int``` et ```int const``` sont strictement équivalents et désignent tous les deux un entier dont la valeur ne peut être modifiée. Le modificateur ```const``` qualifie l’élément directement à sa gauche et s’il n’y a rien à gauche, il s’applique à l’élément immédiatement à droite.
+
+ Le choix de positionnement du mot clef const est une question de préférence pour les types simples et les référence (const int& et int const& sont équivalents également), mais il est primordial pour les pointeurs. En effet, si const int* et int const* sont équivalent, ce n’est pas le cas de int* const :
+int main()
+{
+    int i{ 42 };
+    int j{ 24 };
+
+    int* p{ &i }; // Déclaration d'un pointeur sur un entier.
+    (*p)++; // i vaut désormais 43.
+
+    std::cout << i << std::endl;    
+
+    const int* cp1{ &i }; // Déclaration d'un pointeur sur un entier constant.
+    int const* cp2{ &j }; // Déclaration d'un pointeur sur un entier constant.
+
+    // Les instructions (*cp1)++; et (*cp2)++; sont invalide : il n'est pas possible de modifier l'entier.
+    cp2 = cp1; // cp2 pointe désormais sur l'entier pointé par cp1, donc sur i, qui vaut 43.
+    // L'instruction p = cp1; est invalide : cp1 pointe sur un entier constant contrairement à p (conversion de const int* vers int*) même si p pointe déjà sur i.
+
+    int* const pc{ &i }; // Déclaration d'un pointeur constant sur un entier.
+    *pc = j; // i vaut désormais 24.
+    // L'instruction pc = &j; est invalide : le pointeur est constant, c'est à dire qu'on ne peut plus changer l'adresse à laquelle il pointe.
+
+    const int* const cpc1{ cp1 }; // Déclaration d'un pointeur constant sur un entier constant.
+    // int const* const cpc1{ p }; <-- Equivalent.
+
+    // Les instructions cpc1 = cpc2; et *cpc1 = 0; par exemple sont invalides.
+}
+La position du modificateur const est donc importante en ce qui concerne les pointeurs. La chose peut d’ailleurs rapidement se compliquer :  
+int*const*const**const*const* a; // <- voici du code propre et compréhensible.
+En fin de compte, const int et int const sont donc strictement équivalent. Des arguments existent en faveur de chaque notation (lisibilité, universalité …) et le choix est donc personnel (ou défini par les codings rules de votre entreprise). Comme toujours, peu importe le choix que vous faites, essayez de rester cohérent d’utiliser la même notation à chaque fois.
+
 ## Quelle est la différence entre const et constexpr ?
 
 Le mot clef ```const``` permet de représenter la constance (l’immuabilité) d’un objet. Il est utilisé comme modificateur de type ou pour spécifier des fonctions membres constantes.
