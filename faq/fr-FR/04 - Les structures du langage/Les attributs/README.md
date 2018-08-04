@@ -9,13 +9,11 @@
 - [A quoi correspond l'attribut [[carries_dependency]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-carries_dependency-).
 - [A quoi correspond l'attribut [[deprecated]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-deprecated-).
 - [A quoi correspond l'attribut [[falltrough]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-falltrough-).
-- [A quoi correspond l'attribut [[nodiscard]] ?]().
-- [A quoi correspond l'attribut [[maybe_unused]] ?]().
-- [A quoi correspond les attributs [[likely]] et [[unlikely]] ?]().
-
-
-
-
+- [A quoi correspond l'attribut [[nodiscard]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-nodiscard-).
+- [A quoi correspond l'attribut [[maybe_unused]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-maybe_unused-).
+- [A quoi correspond les attributs [[likely]] et [[unlikely]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-les-attributs-likely-et-unlikely-).
+- [A quoi correspond l'attribut [[no_unique_address]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-no_unique_address-).
+- [A quoi correspondent les attributs [[expects]] [[ensures]] et [[assert]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspondent-les-attributs-expects-ensures-et-assert-).
 
 ## Qu'est-ce qu'un attribut ?
 
