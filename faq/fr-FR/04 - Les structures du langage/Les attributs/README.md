@@ -231,12 +231,101 @@ On peut comparer ```[[maybe_unused]]``` à l’annotation **Java** ```@SupressWa
 
 ## A quoi correspond les attributs [[likely]] et [[unlikely]] ?
 
-**En cours d'écriture**
+Ces deux attributs ont été introduits avec **C++20** pour permettre d’indiquer au compilateur qu’une branche est plus probable que l’autre.
+
+```[[likely]]```, respectivement ```[[unlikely]]```, peut être assigné à une étiquette ou une expression pour indiquer que le résultat sera le plus souvent  ```true```, respectivement ```false``` :
+
+```cpp
+int foo(int i) {
+    switch(i) {
+                    case 1: return 1;
+      [[likely]]    case 2: return 2;
+      [[unlikely]]  default: return 3;
+    }
+    return 2;
+}
+
+void bar(int i) {
+    if ([[unlikely]] !foo(i)) {
+      do_something();
+    }
+}
+```
+
+Ici, le compilateur sait que la valeur 2 est la plus probable, et que les valeurs autres que 1 et 2 sont peu probable. Il peut alors effectuer des optimisations avec ces informations supplémentaires sur le flot de contrôle.
+
+Ces attributs sont à utiliser après une étude d'un code existant à l'aide d'un *profiler* par exemple, lorsqu'il est clair qu'une branche est plus souvent accédée que l'autre. L'usage prématuré de ces attributs peut fortement détériorer les performances
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attribute: likely, unlikely](https://en.cppreference.com/w/cpp/language/attributes/likely)
+ - **[EN]** [open-std.org | p0479r0 "Attributes for Likely and Unlikely Branches"](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0479r0.html)
 
 ## A quoi correspond l'attribut [[no_unique_address]] ?
 
+L’attribut ```[[no_unique_address]]```, ajouté avec **C++20**, est destiné à indiquer qu’une variable membre n’a pas besoin d’avoir une adresse séparée des autres membres de la classes. Cela revient à autoriser un équivalent de l’[Empty Base Optimisation](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md) pour un membre d’une classe.
+
+```
+struct Empty {}; // empty class
+
+struct X {
+    int i;
+    Empty e;
+};
+
+struct Y {
+    int i;
+    [[no_unique_address]] Empty e;
+};
+
+int main()
+{
+    // the size of any object of empty class type is at least 1
+    static_assert(sizeof(Empty) >= 1);
+
+    // at least one more byte is needed to give e a unique address
+    static_assert(sizeof(X) >= sizeof(int) + 1);
+
+    // empty member optimized out
+    static_assert(sizeof(Y) == sizeof(int));
+}
+```
+
+Dans cet exemple tiré de *cppreference*, ```Empty``` est une **empty class**, c’est à dire qu’elle ne contient aucune donnée membre. Puisque le C++ impose que même une classe vide fasse une taille d’au moins 1 byte, la première assertion est donc vraie.
+
+La classe ```X``` contient une donnée membre de type ```Empty```, la classe ```X``` a donc une taille au moins égale à la taille d’un ```int``` plus un byte, soit ```sizeof(int) + 1``` comme le confirme la seconde assertion.
+
+La classe ```Y``` contient elle aussi une donnée membre de type ```Empty```, mais accompagnée de l’attribut ```[[no_unique_address]]```. Dans ce cas, le compilateur est autorisé à optimiser ce membre de manière à ne lui faire occuper aucune place. Par conséquent, la taille de ```Y``` est égale à la taille d’un ```int```, le membre ```e``` n’occupant pas d’espace en mémoire.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attribute: no_unique_address](https://en.cppreference.com/w/cpp/language/attributes/no_unique_address)
+ - **[EN]** [open-std.org | p0840r2 "Language support for empty objects"](http://open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0840r2.html)
+
+## A quoi correspond l'attribut [[assert]] ?
+
+L'attribut ```[[assert]]``` fait partie des ajouts de **C++20** pour le support de la programmation par contrat. Cet attribut permet de déclarer une assertion, il peut être vu comme une version moderne de la macro **C** ```assert()```.
+
+Cet attribut est assez particulier puisqu'il s'utilise à la manière d'une instruction et est suivis par un point-virgule :
+
+```cpp
+void foo(int i = 0) {
+    /* ... */
+    [[assert: x >= 0]];
+    /* ... */
+    [[assert: !something()]];
+    /* ... */
+}
+
+```[[assert]]``` permet de vérifier la validité d'un prédicat à un point donné d'une fonction. Comme les autres attributs liés aux contrats, il est possible de spécifier un niveau de contrat (*contract-level*), ```default``` étant implicite.
+
+Par rapport à l'ancien ```assert``` hérité du **C**, cet attribut apporte quelques avantages non négligeables. Déjà, il ne s'agit pas d'une macro et il permet d'éviter les risques associés (```[[assert: c == std::complex<float>{0, 0}]]``` compile contrairement à ```assert(c == std::complex<float>{0,0})```). Ensuite, les *contract-level* ainsi que la possibilité de régler le niveau de vérification voulu (associé à la possibilité de fournir un gestionnaire de violation de contrat personnalisé). Enfin, ```[[assert]]``` permet à l'optimiseur et aux outils d'analyse statique d'avoir des informations précises sur l'assertion ce qui facilite l'analyse et peut ouvrir la voie à des optimisations supplémentaires.
+
+#### Liens et compléments
+ - [Comment faire une assertion en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+ - **[EN]** [cppreference.com – C++ attribute: expects, ensures, assert](https://en.cppreference.com/w/cpp/language/attributes/contract)
+ - **[EN]** [open-std.org | p0840r2 "Support for contract based programming in C++"](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0542r5.html)
+
+## A quoi correspondent les attributs [[expects]] et [[ensures]] ?
+
 **En cours d'écriture**
 
-## A quoi correspondent les attributs [[expects]] [[ensures]] et [[assert]] ?
-
-**En cours d'écriture**
+## Qu'est-ce que le contract-level des attributs des contrats ?
