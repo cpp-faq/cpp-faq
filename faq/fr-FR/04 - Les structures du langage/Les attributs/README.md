@@ -108,7 +108,6 @@ La liste des fonctions standards marquées ```[[noreturn]]``` sont listées sur 
 
 #### Liens et compléments
  - **[EN]** [cppreference.com – C++ attribute: noreturn](https://en.cppreference.com/w/cpp/language/attributes/noreturn)
- - **[EN]** [open-std.org | p0212r1 "Wording for [[maybe_unused]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0212r1.pdf)
 
 ## A quoi correspond l'attribut [[carries_dependency]] ?
 
@@ -148,7 +147,57 @@ action handle_event(event my_event) {
 
 ## A quoi correspond l'attribut [[nodiscard]] ?
 
-**En cours d'écriture**
+L’attribut ```[[nodiscard]]```, ajouté avec **C++17**, permet de refuser le droit du programmeur d’ignorer le retour d’une fonction.
+
+Assez simplement, une fonction peut être marquée avec ```[[nodiscard]]``` ce qui indique au compilateur que le retour ne devrait pas être ignoré :
+
+```cpp
+[[nodiscard]] error_code f();
+
+int main() {
+   f(); // GCC-7.2 : warning: ignoring return value of 'error_code f()',
+        // declared with attribute nodiscard [-Wunused-result]
+}
+```
+
+L’attribut ```[[nodiscard]]``` peut également être appliqué à un type. Dans ce cas, toutes les fonctions retournant un objet de ce type sont implicitement marquées ```[[nodiscard]]``` :
+
+```struct [[nodiscard]] error_code {};
+
+error_code f();
+error_code g();
+
+int main() {
+   f(); // warning [[nodiscard]].
+   g(); // warning [[nodiscard]].
+}
+```
+
+## Est-ce que les attributs sont hérités ?
+
+Les attributs ne jamais hérité. Ci-suit un exemple avec ```[[nodiscard]]``` :
+
+```cpp
+struct [[nodiscard]] error_code {};
+struct critical_error_code : error_code {};
+
+struct A
+{
+    virtual [[nodiscard]] bool foo() = 0;
+};
+
+struct B : a
+{
+    bool foo() override;
+};
+
+critical_error_code foo();
+
+int main() {
+   h(); // pas de warning.
+   A{}.foo(); // pas de warning.
+}
+```
 
 ## A quoi correspond l'attribut [[maybe_unused]] ?
 
