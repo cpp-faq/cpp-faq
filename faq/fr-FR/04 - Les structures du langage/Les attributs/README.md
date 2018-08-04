@@ -67,7 +67,7 @@ Les attributs standards (à l'heure de **C++20**) sont au nombre de treize :
 
 ## Comment déclarer plusieurs attributs en même temps ?
 
-Il est possible de spécifier une liste d'attributs dans une même déclaration. Les attributs de contrat (```[[assert]]```, ```[[assert]]``` et ```[[assert]]```) font exception et doivent être déclarés seuls :
+Il est possible de spécifier une liste d'attributs dans une même déclaration. Les attributs de contrat (```[[assert]]```, ```[[ensures]]``` et ```[[expects]]```) font exception et doivent être déclarés seuls :
 
 ```cpp
 [[nodiscard, deprecated, gnu::always_inline, gnu::hot]]
@@ -102,7 +102,7 @@ using namespace gnu; // Ici, l'espace de nom gnu est importé.
 
 ## A quoi correspond l'attribut [[fallthrough]] ?
 
-L’attribut ```[[fallthrough]]``` est destiné aux instructions ```switch```. L’objectif est de préciser au compilateur qu’une absence de saut du flot de contrôle est volontaire (que ce soit avec ```break``` ou ```return```).
+L’attribut ```[[fallthrough]]``` (depuis **C++17**) est destiné aux instructions ```switch```. L’objectif est de préciser au compilateur qu’une absence de saut du flot de contrôle est volontaire (que ce soit avec ```break``` ou ```return```).
 
 Les compilateurs signalent souvent les *fallthroughs*, c’est à dire lorsque le programme passe d’une ```case``` à l’autre sans saut. Si il s’agit en effet d’une erreur de programmation assez classique, il est également possible que celle-ci soit intentionnelle.
 
@@ -125,8 +125,8 @@ action handle_event(event my_event) {
 ```
 
 #### Liens et compléments
- - [[EN] cppreference.com – C++ attribute: fallthrough](https://en.cppreference.com/w/cpp/language/attributes/fallthrough)
- - [[EN] open-std.org | p0188r1 "Wording for [[fallthrough]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0188r1.pdf)
+ - **[EN]** [cppreference.com – C++ attribute: fallthrough](https://en.cppreference.com/w/cpp/language/attributes/fallthrough)
+ - **[EN]** [open-std.org | p0188r1 "Wording for [[fallthrough]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0188r1.pdf)
 
 ## A quoi correspond l'attribut [[nodiscard]] ?
 
@@ -134,7 +134,33 @@ action handle_event(event my_event) {
 
 ## A quoi correspond l'attribut [[maybe_unused]] ?
 
-**En cours d'écriture**
+L’attribut ```[[maybe_unused]]``` (depuis **C++17**), signale au compilateur qu’une variable peut être inutilisée et qu’il n’y a pas lieu de s’inquiéter. Le compilateur ne signalera pas d’avertissement si la variable est effectivement inutilisée.
+
+```cpp
+void f([[maybe_unused]] bool thing1,
+                        [[maybe_unused]] bool thing2)
+{
+   [[maybe_unused]] bool b = thing1 && thing2;
+   assert(b);
+}
+```
+
+Dans cet exemple issu de *cppreference*, l’attribut est appliqué aux arguments de ```f``` et à la variable locale ```b```.
+
+Ici, dans le cas d’une compilation en mode *release*, la macro ```assert``` va disparaître et par conséquent la variable ```b``` sera inutilisée. Puisque l’attribut ```[[maybe_unused]]``` est spécifié, le compilateur ne générera pas d’avertissement. Par ricochet, les arguments de ```f ```seront eux aussi inutilisés, d’où l’application de l’attribut à nouveau.
+
+```[[maybe_unused]]``` peut aussi s'appliquer à d'autres entités, notamment les fonction et les classes :
+
+```cpp
+[[maybe_unused]] class C {}
+[[maybe_unused]] void foo()
+```
+
+On peut comparer ```[[maybe_unused]]``` à l’annotation **Java** ```@SupressWarning("unused")```, qui fait sensiblement la même chose.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attribute: maybe_unused](https://en.cppreference.com/w/cpp/language/attributes/maybe_unused)
+ - **[EN]** [open-std.org | p0212r1 "Wording for [[maybe_unused]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0212r1.pdf)
 
 ## A quoi correspond les attributs [[likely]] et [[unlikely]] ?
 

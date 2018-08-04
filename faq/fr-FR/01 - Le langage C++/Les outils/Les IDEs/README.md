@@ -25,7 +25,7 @@ Certains développeurs préféreront un IDE spécifique, d'autres utiliseront di
 Cette FAQ donne une brève description de quelques-uns des IDE les plus connus pour le langage C++, mais la meilleur façon de faire son choix reste encore de les essayer par soi-même.
 
 #### Liens et compléments
- - [[EN] Comparaison des IDE - Wikipédia](https://en.wikipedia.org/wiki/Comparison_of_integrated_development_environments#C/C++)
+ - **[EN]** [wikipedia.org | Comparaison des IDEs](https://en.wikipedia.org/wiki/Comparison_of_integrated_development_environments#C/C++)
  - [Quel est le meilleur compilateur C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
 ## Qu'est-ce que CLion ?

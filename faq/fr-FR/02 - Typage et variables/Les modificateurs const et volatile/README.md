@@ -13,8 +13,8 @@ En C, ```restrict``` est un qualificateur de type complémentaire à ```const```
 Ce mot-clef n'existe pas en C++ et c'est d'ailleurs l'une des rares incompatibilités entre le C et le C++. Cela étant, certains compilateur proposent des extensions telles que ```__restrict__``` sur GCC et chez le compilateur d'IBM ou ```__restrict``` sur MSVC.
 
 #### Liens et compléments
- - [[EN] cppreference.com | restrict type qualifier](https://en.cppreference.com/w/c/language/restrict)
- - [[EN] wikipedia.org | Restrict](https://fr.wikipedia.org/wiki/Restrict)
+ - **[EN]** [cppreference.com | restrict type qualifier](https://en.cppreference.com/w/c/language/restrict)
+ - **[EN]** [wikipedia.org | Restrict](https://fr.wikipedia.org/wiki/Restrict)
  - [Un programme C est-il valide en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
 ## Quelle est la différence entre const int et int const ?
