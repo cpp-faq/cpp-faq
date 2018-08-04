@@ -126,7 +126,7 @@ action handle_event(event my_event) {
 
 #### Liens et compléments
  - [[EN] cppreference.com – C++ attribute: fallthrough](https://en.cppreference.com/w/cpp/language/attributes/fallthrough)
- - [[EN]] open-std.org | p0188r1 "Wording for fallthrough attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0188r1.pdf)
+ - [[EN] open-std.org | p0188r1 "Wording for [[fallthrough]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0188r1.pdf)
 
 ## A quoi correspond l'attribut [[nodiscard]] ?
 
