@@ -22,7 +22,7 @@ Les attributs ont été introduit avec **C++11**. Ils fournissent une syntaxe un
 Si un attribut n'est pas reconnu par un compilateur, celui-ci est ignoré. Les attributs sont déclarés entre deux crochets ```[[attribute]]``` et peuvent être associés à la majorité des constructions du langage. Ci suit un exemple avec quelques attributs standards :
 
 ```cpp
-[[deprecated("Superseded by foo(bool))]]
+[[deprecated("Superseded by foo(bool)")]]
 [[noreturn]] void foo();
 
 [[nodiscard]] error_code bar([[carries_dependency]] int* x)
