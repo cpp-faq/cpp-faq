@@ -17,13 +17,13 @@
 
 ## Qu'est-ce qu'un attribut ?
 
-Les attributs ont été introduit avec **C++11**. Ils fournissent une syntaxe unifiée pour les attributs des compilateur (```__attribute__``` sur GCC et Clang, ```__declspec()``` pour MSVC). Le standard propose également des attributs standards.
+Les attributs ont été introduit avec **C++11**. Ils fournissent une syntaxe unifiée pour les attributs des compilateurs (```__attribute__``` sur GCC et Clang, ```__declspec()``` pour MSVC). Le standard propose également des attributs standards.
 
-Si un attribut n'est pas reconnu par un compilateur, celui-ci est ignoré. Les attributs sont déclarés entre deux crochets ```[[attribute]]``` et peuvent être associés à la majorité des constructions du langage. Ci suit un exemple avec quelques attributs standards :
+Si un attribut n'est pas reconnu par le compilateur, celui-ci est ignoré. Les attributs sont déclarés entre deux crochets ```[[attribute]]``` et peuvent être associés à la majorité des constructions du langage. Ci suit un exemple avec quelques attributs standards :
 
 ```cpp
-[[deprecated("Superseded by foo(bool)")]]
-[[noreturn]] void foo();
+[[noreturn, deprecated("Superseded by foo(bool)")]]
+void foo();
 
 [[nodiscard]] error_code bar([[carries_dependency]] int* x)
     [[expects: *x >= 0]]
@@ -65,18 +65,29 @@ Les attributs standards (à l'heure de **C++20**) sont au nombre de treize :
  - *(C++20)* ```[[ensures]]```.
  - *(C++20)* ```[[expects]]```.
 
-## Est-ce que using namespace s'applique aussi aux attributs ?
+## Pourquoi using namespace s'applique pas aux attributs ?
 
-**En cours d'écriture**
+Les espaces de noms d'attributs (*attribute-namespace*) sont distincts des espaces de nom habituels et donc la directive ```using namespace``` ne s'applique pas aux attributs.
+
+Cependant, il est possible d'extraire tous les attributs d'un *attribute-namespace* à l'aide de la directive ```using``` dans la déclaration des attributs ```[[ using attribute-namespace : attribute-list ]]``` :
+
+```cpp
+/* On utilise ici les attributs non-standards de GCC (avec extension GNU), qui appartiennent à l'espace de nom gnu */
+using namespace gnu; // Ici, l'espace de nom gnu est importé.
+
+[[unused, const]] int x; // les attributs sont non reconnus et donc ignorés.
+[[gnu::unused, gnu::const]] int y; // OK
+[[using gnu : unused, const]] int z; // OK
+```
+
+## Puis-je déclarer plusieurs attributs en même temps ?
 
 ## A quoi correspond l'attribut [[noreturn]] ?
 
 **En cours d'écriture**
 
 ## A quoi correspond l'attribut [[carries_dependency]] ?
-A quoi correspond l'attribut [[noreturn]] ?
-Quels sont les attributs standards en C++ ?
-Est-ce que using namespace s'applique aussi aux attributs ?
+
 **En cours d'écriture**
 
 ## A quoi correspond l'attribut [[deprecated]] ?
