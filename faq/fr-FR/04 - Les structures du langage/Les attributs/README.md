@@ -2,22 +2,22 @@
 
 ### Sommaire
 
-- [Qu'est-ce qu'un attribut ?]().
-- [Quels sont les attributs standards en C++ ?]().
-- [Est-ce que using namespace s'applique aussi aux attributs ?]().
-- [A quoi correspond l'attribut [[carries_dependency]] ?]().
-- [A quoi correspond l'attribut [[noreturn]] ?]().
-- []().
-- []().
-- []().
-- []().
-- []().
+- [Qu'est-ce qu'un attribut ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#quest-ce-quun-attribut-).
+- [Quels sont les attributs standards en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#quels-sont-les-attributs-standards-en-c-).
+- [Est-ce que using namespace s'applique aussi aux attributs ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#est-ce-que-using-namespace-sapplique-aussi-aux-attributs-).
+- [A quoi correspond l'attribut [[noreturn]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-noreturn-).
+- [A quoi correspond l'attribut [[carries_dependency]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-carries_dependency-).
+- [A quoi correspond l'attribut [[deprecated]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-deprecated-).
+- [A quoi correspond l'attribut [[falltrough]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-falltrough-).
+- [A quoi correspond l'attribut [[nodiscard]] ?]().
+- [A quoi correspond l'attribut [[maybe_unused]] ?]().
+- [A quoi correspond les attributs [[likely]] et [[unlikely]] ?]().
 
 
 
 
 
-## Qu'est ce qu'un attribut ?
+## Qu'est-ce qu'un attribut ?
 
 Les attributs ont été introduit avec **C++11**. Ils fournissent une syntaxe unifiée pour les attributs des compilateur (```__attribute__``` sur GCC et Clang, ```__declspec()``` pour MSVC). Le standard propose également des attributs standards.
 
