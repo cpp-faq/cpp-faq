@@ -314,6 +314,7 @@ void foo(int i = 0) {
     [[assert: !something()]];
     /* ... */
 }
+```
 
 ```[[assert]]``` permet de vérifier la validité d'un prédicat à un point donné d'une fonction. Comme les autres attributs liés aux contrats, il est possible de spécifier un niveau de contrat (*contract-level*), ```default``` étant implicite.
 
