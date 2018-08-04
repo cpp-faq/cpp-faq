@@ -48,6 +48,10 @@ void foo();
 }
 ```
 
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attributes](https://en.cppreference.com/w/cpp/language/attributes)
+ - **[EN]** [open-std.org | n2761 "General Attributes for C++ "](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2761.pdf)
+
 ## Quels sont les attributs standards en C++ ?
 
 Les attributs standards (à l'heure de **C++20**) sont au nombre de treize :
@@ -64,6 +68,10 @@ Les attributs standards (à l'heure de **C++20**) sont au nombre de treize :
  - *(C++20)* ```[[assert]]```.
  - *(C++20)* ```[[ensures]]```.
  - *(C++20)* ```[[expects]]```.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attributes](https://en.cppreference.com/w/cpp/language/attributes)
+ - **[EN]** [open-std.org | n2761 "General Attributes for C++ "](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2761.pdf)
 
 ## Comment déclarer plusieurs attributs en même temps ?
 
@@ -108,6 +116,7 @@ La liste des fonctions standards marquées ```[[noreturn]]``` sont listées sur 
 
 #### Liens et compléments
  - **[EN]** [cppreference.com – C++ attribute: noreturn](https://en.cppreference.com/w/cpp/language/attributes/noreturn)
+ - **[EN]** [open-std.org | n2761 "General Attributes for C++ "](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2761.pdf)
 
 ## A quoi correspond l'attribut [[carries_dependency]] ?
 
@@ -149,6 +158,7 @@ struct [[deprecated]] A<void> {
 
 #### Liens et compléments
  - **[EN]** [cppreference.com – C++ attribute: deprecated](https://en.cppreference.com/w/cpp/language/attributes/deprecated)
+ - **[EN]** [open-std.org | n3760 "General Attributes for C++ "](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3760.html)
 
 ## A quoi correspond l'attribut [[fallthrough]] ?
 
