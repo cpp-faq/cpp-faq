@@ -90,7 +90,25 @@ using namespace gnu; // Ici, l'espace de nom gnu est importé.
 
 ## A quoi correspond l'attribut [[noreturn]] ?
 
-**En cours d'écriture**
+L'attribut ```[[noreturn]]```, introduit avec **C++11**, permet de signaler qu'une fonction ne retourne pas. Il peut s'agir d'une fonction qui lève une exception dans tous les cas ou d'un appel à une fonction qui termine le programme (par exemple ```std::terminate```) ou qui change le contexte d'exécution (```std::longjmp```).
+
+Si la fonction peut effectivement se retourner, il s'agit d'un **undefined behavior**.
+
+```cpp
+std::jmp_buf jmp_buf;
+[[noreturn]] foo(int a) {
+    /* ... */
+    std::longjmp(jmp_buf, a);
+}
+
+[[noreturn]] bar() { throw false; }
+```
+
+La liste des fonctions standards marquées ```[[noreturn]]``` sont listées sur [cette page](https://en.cppreference.com/w/cpp/language/attributes/noreturn).
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attribute: noreturn](https://en.cppreference.com/w/cpp/language/attributes/noreturn)
+ - **[EN]** [open-std.org | p0212r1 "Wording for [[maybe_unused]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0212r1.pdf)
 
 ## A quoi correspond l'attribut [[carries_dependency]] ?
 
