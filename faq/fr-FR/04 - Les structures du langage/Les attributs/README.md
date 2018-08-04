@@ -2,6 +2,19 @@
 
 ### Sommaire
 
+- [Qu'est-ce qu'un attribut ?]().
+- [Quels sont les attributs standards en C++ ?]().
+- [Est-ce que using namespace s'applique aussi aux attributs ?]().
+- [A quoi correspond l'attribut [[carries_dependency]] ?]().
+- [A quoi correspond l'attribut [[noreturn]] ?]().
+- []().
+- []().
+- []().
+- []().
+- []().
+
+
+
 
 
 ## Qu'est ce qu'un attribut ?
@@ -37,16 +50,35 @@ Si un attribut n'est pas reconnu par un compilateur, celui-ci est ignoré. Les a
 }
 ```
 
+## Quels sont les attributs standards en C++ ?
+
+Les attributs standards (à l'heure de **C++20**) sont au nombre de treize :
+
+ - *(C++11)* ```[[noreturn]]```.
+ - *(C++11)* ```[[carries_dependency]]```.
+ - *(C++14)* ```[[deprecated]]```.
+ - *(C++17)* ```[[falltrough]]```.
+ - *(C++17)* ```[[nodiscard]]```.
+ - *(C++17)* ```[[maybe_unused]]```.
+ - *(C++20)* ```[[likely]]``` et ```[[unlikely]]```.
+ - *(C++20)* ```[[no_unique_address]]```.
+ - *(C++20)* ```[[expects]]```.
+ - *(C++20)* ```[[assert]]```.
+ - *(C++20)* ```[[ensures]]```.
+ - *(C++20)* ```[[expects]]```.
+
 ## Est-ce que using namespace s'applique aussi aux attributs ?
 
-## Quels sont les attributs standards en C++ ?
+**En cours d'écriture**
 
 ## A quoi correspond l'attribut [[noreturn]] ?
 
 **En cours d'écriture**
 
 ## A quoi correspond l'attribut [[carries_dependency]] ?
-
+A quoi correspond l'attribut [[noreturn]] ?
+Quels sont les attributs standards en C++ ?
+Est-ce que using namespace s'applique aussi aux attributs ?
 **En cours d'écriture**
 
 ## A quoi correspond l'attribut [[deprecated]] ?
