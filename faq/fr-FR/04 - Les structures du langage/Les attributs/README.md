@@ -4,7 +4,8 @@
 
 - [Qu'est-ce qu'un attribut ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#quest-ce-quun-attribut-).
 - [Quels sont les attributs standards en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#quels-sont-les-attributs-standards-en-c-).
-- [Est-ce que using namespace s'applique aussi aux attributs ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#est-ce-que-using-namespace-sapplique-aussi-aux-attributs-).
+- [Pourquoi using namespace s'applique pas aux attributs ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#pourquoi-using-namespace-sapplique-pas-aux-attributs-).
+- [Comment déclarer plusieurs attributs en même temps ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#comment-d%C3%A9clarer-plusieurs-attributs-en-m%C3%AAme-temps-).
 - [A quoi correspond l'attribut [[noreturn]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-noreturn-).
 - [A quoi correspond l'attribut [[carries_dependency]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-carries_dependency-).
 - [A quoi correspond l'attribut [[deprecated]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-deprecated-).
@@ -13,7 +14,7 @@
 - [A quoi correspond l'attribut [[maybe_unused]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-maybe_unused-).
 - [A quoi correspond les attributs [[likely]] et [[unlikely]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-les-attributs-likely-et-unlikely-).
 - [A quoi correspond l'attribut [[no_unique_address]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-no_unique_address-).
-- [A quoi correspondent les attributs [[expects]] [[ensures]] et [[assert]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspondent-les-attributs-expects-ensures-et-assert-).
+- [A quoi correspond l'attribut [[assert]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-assert-).
 
 ## Qu'est-ce qu'un attribut ?
 
@@ -370,7 +371,14 @@ void foo(int i = 0) {
 
 ```[[assert]]``` permet de vérifier la validité d'un prédicat à un point donné d'une fonction. Comme les autres attributs liés aux contrats, il est possible de spécifier un niveau de contrat (*contract-level*), ```default``` étant implicite.
 
-Par rapport à l'ancien ```assert``` hérité du **C**, cet attribut apporte quelques avantages non négligeables. Déjà, il ne s'agit pas d'une macro et il permet d'éviter les risques associés (```[[assert: c == std::complex<float>{0, 0}]]``` compile contrairement à ```assert(c == std::complex<float>{0,0})```). Ensuite, les *contract-level* ainsi que la possibilité de régler le niveau de vérification voulu (associé à la possibilité de fournir un gestionnaire de violation de contrat personnalisé). Enfin, ```[[assert]]``` permet à l'optimiseur et aux outils d'analyse statique d'avoir des informations précises sur l'assertion ce qui facilite l'analyse et peut ouvrir la voie à des optimisations supplémentaires.
+Par rapport à l'ancien ```assert``` hérité du **C**, cet attribut apporte quelques avantages non négligeables. Déjà, il ne s'agit pas d'une macro et il permet d'éviter les risques associés (```[[assert: c == std::complex<float>{0, 0}]]``` compile contrairement à ```assert(c == std::complex<float>{0,0})```). Ensuite, les *contract-level* ainsi que la possibilité de régler le niveau de vérification voulu (associé à la possibilité de fournir un gestionnaire de violation de contrat personnalisé) :
+
+```cpp
+[[assert audit : x != nullptr && reachable(x)]]
+[[assert axiom : sorted(database)]]
+```
+
+Enfin, ```[[assert]]``` permet à l'optimiseur et aux outils d'analyse statique d'avoir des informations précises sur l'assertion ce qui facilite l'analyse et peut ouvrir la voie à des optimisations supplémentaires.
 
 #### Liens et compléments
  - [Comment faire une assertion en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
@@ -379,6 +387,32 @@ Par rapport à l'ancien ```assert``` hérité du **C**, cet attribut apporte que
 
 ## A quoi correspondent les attributs [[expects]] et [[ensures]] ?
 
-**En cours d'écriture**
+```[[expects]]``` et ```[[ensure]]```, ajouté avec **C++20**, sont les **contracts condition**. Ils permettent d'exprimer respectivement la précondition et la postcondition.
 
-## Qu'est-ce que le contract-level des attributs des contrats ?
+Ils s'appliquent à une fonction de la manière suivante :
+
+```cpp
+void foo(int x) [[expects: x > 0]] // La précondition est violée si le paramètre x est inférieur ou égal à 0.
+
+void foo(const std::string& s) [[ensures: !s.empty]]; // La postcondition est violée si s est vide après l'appel de la fonction.
+```
+
+Les deux attributs acceptent une expression booléenne. Les arguments de la fonction et toutes les variables accessibles peuvent être utilisées. Dans le cas de ```[[ensures]]```, il est possible d'introduire l'identifiant qui sera utilisé comme retour de fonction de manière à l'utiliser dans la post condition :
+
+```
+std::size_t read()
+  [[ensures r: r != 0]]
+{
+    /* ... */
+    std::size_t r = read(something);
+    /* ... */
+    return r;
+}
+```
+
+Tout comme ```[[assert]]``` ces attributs peuvent avoir un **build-level** [Qu'est-ce que le build level ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md). Les indication fournies par ces attributs donnent des informations à l'optimiseurs et aux outils statiques, ainsi qu'au développeurs qui lisent le code.
+
+#### Liens et compléments
+ - [Comment définir une pré/postcondition en C++ ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+ - **[EN]** [cppreference.com – C++ attribute: expects, ensures, assert](https://en.cppreference.com/w/cpp/language/attributes/contract)
+ - **[EN]** [open-std.org | p0840r2 "Support for contract based programming in C++"](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0542r5.html)
