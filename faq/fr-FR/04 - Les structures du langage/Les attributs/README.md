@@ -75,7 +75,7 @@ Les attributs standards (à l'heure de **C++20**) sont au nombre de treize :
 
 ## Comment déclarer plusieurs attributs en même temps ?
 
-Il est possible de spécifier une liste d'attributs dans une même déclaration. Les attributs de contrat (```[[assert]]```, ```[[ensures]]``` et ```[[expects]]```) font exception et doivent être déclarés seuls :
+Il est possible de spécifier une liste d'attributs dans une même déclaration en les spérant à l'aide d'une virgule. Les attributs de contrat (```[[assert]]```, ```[[ensures]]``` et ```[[expects]]```) font exception et doivent être déclarés seuls :
 
 ```cpp
 [[nodiscard, deprecated, gnu::always_inline, gnu::hot]]
@@ -120,7 +120,16 @@ La liste des fonctions standards marquées ```[[noreturn]]``` sont listées sur 
 
 ## A quoi correspond l'attribut [[carries_dependency]] ?
 
-**En cours d'écriture**
+L'attribut ```[[carries_dependency]]``` introduit avec **C++11**, permet d'indiquer qu'une chaîne de dépendance se propage à l'intérieur ou à l'extérieur d'une fonction (avec un ```std::memory_order``` **release** ou **consume**) et qu'il est donc possible d'éviter des barrières inutiles.
+
+Si cet attribut est placé devant le paramètre d'une fonction (par exemple ```foo(int* [[carries_dependency]] v)```), il indique que l'initialisation du paramètre a une dépendance dans la conversion *lvalue-vers-rvalue*.
+
+Si il est appliqué à une fonction (comme ```[[carries_dependency]] int* foo()```) il indique que la valeur de retour à une dépendance par rapport à l'appelant.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ attribute: carries_dependency](https://en.cppreference.com/w/cpp/language/attributes/carries_dependency)
+ - **[EN]]** [cppreference.com - std::kill_dependency](https://en.cppreference.com/w/cpp/atomic/kill_dependency)
+ - **[EN]** [open-std.org | n2761 "General Attributes for C++ "](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2761.pdf)
 
 ## A quoi correspond l'attribut [[deprecated]] ?
 
