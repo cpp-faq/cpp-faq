@@ -96,6 +96,32 @@ using namespace gnu; // Ici, l'espace de nom gnu est importé.
 [[using gnu : unused, const]] int z; // OK
 ```
 
+## Les attributs sont-ils hérités ?
+
+Les attributs ne sont pas hérité. Ci-suit un exemple avec ```[[nodiscard]]``` ([A quoi correspond l'attribut [[nodiscard]] ?](https://github.com/cpp-faq/cpp-faq/tree/master/faq/fr-FR/04%20-%20Les%20structures%20du%20langage/Les%20attributs#a-quoi-correspond-lattribut-nodiscard-)) :
+
+```cpp
+struct [[nodiscard]] error_code {};
+struct critical_error_code : error_code {};
+
+struct A
+{
+    virtual [[nodiscard]] bool foo() = 0;
+};
+
+struct B : a
+{
+    bool foo() override;
+};
+
+critical_error_code foo();
+
+int main() {
+   h(); // pas de warning.
+   A{}.foo(); // pas de warning.
+}
+```
+
 ## A quoi correspond l'attribut [[noreturn]] ?
 
 L'attribut ```[[noreturn]]```, introduit avec **C++11**, permet de signaler qu'une fonction ne retourne pas. Il peut s'agir d'une fonction qui lève une exception dans tous les cas ou d'un appel à une fonction qui termine le programme (par exemple ```std::terminate```) ou qui change le contexte d'exécution (```std::longjmp```).
@@ -222,32 +248,6 @@ error_code g();
 int main() {
    f(); // warning [[nodiscard]].
    g(); // warning [[nodiscard]].
-}
-```
-
-## Est-ce que les attributs sont hérités ?
-
-Les attributs ne jamais hérité. Ci-suit un exemple avec ```[[nodiscard]]``` :
-
-```cpp
-struct [[nodiscard]] error_code {};
-struct critical_error_code : error_code {};
-
-struct A
-{
-    virtual [[nodiscard]] bool foo() = 0;
-};
-
-struct B : a
-{
-    bool foo() override;
-};
-
-critical_error_code foo();
-
-int main() {
-   h(); // pas de warning.
-   A{}.foo(); // pas de warning.
 }
 ```
 
