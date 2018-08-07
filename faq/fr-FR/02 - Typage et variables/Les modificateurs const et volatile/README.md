@@ -46,3 +46,31 @@ int* const* const** const* const* ptr; // Cas extrème.
 Le mot clef ```const``` permet de représenter la constance (l’immuabilité) d’un objet. Il est utilisé comme modificateur de type ou pour spécifier des fonctions membres constantes.
 
 Le mot clef ```constexpr``` permet de déclarer des expressions constantes (constant expression), c’est-à-dire des expressions pouvant être évaluées à la compilation plutôt qu’à l’exécution. Une expression constante est implicitement const.
+
+## A quoi sert le mot-clef volatile ?
+
+Le mot-clef ```volatile``` fait partie des **cv-qualifiers** au même titre que ```const```. Il s'applique aux variable, aux variables membres ou aux paramètres d'une fonction.
+
+Les membres d'un objet ```volatile``` seront également considérés comme ```volatile```, qu'ils soient mutable ou non.Considérez l'exemple suivant :
+
+Une variable ```volatile``` indique au compilateur qu'il ne possède pas le contrôle exclusif sur celle-ci et que par conséquent il ne devrait considérer que toutes opérations sur la variable ```volatile``` comme ayant un effet de bord.
+
+```cpp
+int main()
+{
+    volatile int a{ 0 };
+    a = 0;
+}
+```
+
+Dans le cas précédent, la plupart des compilateurs auraient tout bonnement optimisé le code en supprimant la variable ```a``` qui n'est pas utilisée. D'autant que l'affectation à 0 est inutile.
+
+Avec le qualificateur ```volatile```, le compilateur va considérer qu'il est possible que quelque-chose survienne entre la déclaration et l'affectation de la variable et donc qu'il ne doit pas l'optimiser.
+
+Le qualificateur volatile n'apporte aucune garantie en matière d’accès concurrent et ne devrait pas être utilisé en ce sens.
+
+L'opérateur de conversion ```const_cast``` permet également d'enlever la qualification volatile d'une variable, le passage d'un objet non-volatile à un objet volatile est quant à elle implicite, comme pour la constance.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | cv-qualifiers](http://en.cppreference.com/w/cpp/language/cv)
+ - [A quoi sert l'opérateur de conversion const_cast ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
