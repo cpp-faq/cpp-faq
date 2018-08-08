@@ -79,9 +79,12 @@ Dans cet exemple, la modification du membre ```j``` est possible dans un context
 
 ```mutable``` est pratique sur les membres d'une classes qui sont des détails d'implémentations et dont la modification ne modifie pas l'état observable de la classe. Même si l'objet a été modifié d'un point de vue de la mémoire, son état "logique" reste constant. C'est notamment très pratique lorsqu'on implémente un cache : la modification du cache relève de l'optimisation de l'implémentation et n'influence pas l'état logique de l'objet.
 
+#### Liens et compléments
+ - **[EN]** [cppreference.com | cv-qualifiers](http://en.cppreference.com/w/cpp/language/cv)
+
 ## Que signifie le mot clef mutable sur une lambda ?
 
-Par défaut, les captures par valeur d'une lambda ne sont pas modifiables, ```mutable``` peut-être spécifié pour permettre la modification de ces variables :
+Par défaut, les captures par valeur d'une lambda ne sont pas modifiables, ```mutable``` peut-être spécifié (depuis **C++11**) pour permettre la modification de ces variables :
 
 ```cpp
 int i = 0;
@@ -91,8 +94,7 @@ auto ll = [i]() mutable { i = 22; }; // Ok.
 ```
 
 #### Liens et compléments
- - **[EN]** [cppreference.com | cv-qualifiers](http://en.cppreference.com/w/cpp/language/cv)
-
+ - **[EN]** [cppreference.com | Lambda expressions](https://en.cppreference.com/w/cpp/language/lambda)
 
 ## A quoi sert le mot-clef volatile ?
 
