@@ -47,6 +47,53 @@ Le mot clef ```const``` permet de représenter la constance (l’immuabilité) d
 
 Le mot clef ```constexpr``` permet de déclarer des expressions constantes (constant expression), c’est-à-dire des expressions pouvant être évaluées à la compilation plutôt qu’à l’exécution. Une expression constante est implicitement const.
 
+## Que signifie le mot clef mutable sur une variable membre ?
+
+Le mot-clef ```mutable```, lorsqu'il est appliqué à une variable membre, indique d'un membre d'une classe peut-être modifier même si l'objet est constant :
+
+```cpp
+struct A
+{
+    int i;
+    mutable int j;
+
+    A() noexcept = default;
+
+    void foo(int k) const
+    {
+        i = k; // GCC 8.1 : error: assignment of member 'A::i' in read-only object
+        j = k; // Ok.
+    }
+
+};
+
+int main()
+{
+    const A a = {1, 2};
+    a.i = 0; // GCC 8.1 : error: assignment of member 'A::i' in read-only object
+    a.j = 1; // Ok.      
+}
+```
+
+Dans cet exemple, la modification du membre ```j``` est possible dans un contexte constant grâce à ```mutable```.
+
+```mutable``` est pratique sur les membres d'une classes qui sont des détails d'implémentations et dont la modification ne modifie pas l'état observable de la classe. Même si l'objet a été modifié d'un point de vue de la mémoire, son état "logique" reste constant. C'est notamment très pratique lorsqu'on implémente un cache : la modification du cache relève de l'optimisation de l'implémentation et n'influence pas l'état logique de l'objet.
+
+## Que signifie le mot clef mutable sur une lambda ?
+
+Par défaut, les captures par valeur d'une lambda ne sont pas modifiables, ```mutable``` peut-être spécifié pour permettre la modification de ces variables :
+
+```cpp
+int i = 0;
+
+auto l = [i]() { i = 22; }; // GCC 8.1 : error: assignment of read-only variable 'i'
+auto ll = [i]() mutable { i = 22; }; // Ok.
+```
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | cv-qualifiers](http://en.cppreference.com/w/cpp/language/cv)
+
+
 ## A quoi sert le mot-clef volatile ?
 
 Le mot-clef ```volatile``` fait partie des **cv-qualifiers** au même titre que ```const```. Il s'applique aux variable, aux variables membres ou aux paramètres d'une fonction.
