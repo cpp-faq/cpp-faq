@@ -17,12 +17,25 @@ int main()
 }
 ```
 
-Ici, l'instruction ```return``` est même optionnelle. Par convention, retourner ```0``` signifie que le programme s'est exécuté correctement.
+Ici, l'instruction `return` est même optionnelle. Par convention, retourner `0` signifie que le programme s'est exécuté correctement.
 
 #### Liens et compléments
  - [Quels sont les prototypes autorisés pour la fonction main ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
 ## A quoi ressemble le programme "Hello World" en C++ ?
+
+Plusieurs versions du programme **Hello World!** sont généralement proposées pour le C++. En voici une :
+
+```
+#include <iostream>
+
+int main()
+{
+     std::cout << "Hello World !\n";
+}
+```
+
+Généralement les variations proposées tournent autour de l'utilisation de la directive `using namespace` ([Pourquoi devrait-on éviter l'utilisation de la directive using namespace std ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)) et de la présence ou non du retour chariot ('\n'), de `std::endl`, et des arguments de la fonction `main`.
 
 ## Quels sont les différents paradigmes supportés par le C++ ?
 
