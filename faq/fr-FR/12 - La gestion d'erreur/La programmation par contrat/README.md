@@ -19,7 +19,7 @@ int i = foo();
 
 L'effective vérification de l'assertion à l'exécution dépends du **niveau d'assertion** et du **niveau de build**.
 
-Avant **C++20**, la macro `assert` issu du C était utilisées :
+Avant **C++20**, la macro `assert` issue du C était utilisées [Dois-je préférer la macro C assert() ou l'attribut [[assert]] ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md):
 
 ```cpp
 #include <cassert>
@@ -32,13 +32,33 @@ assert(i > 0);
 
 Si la constante préprocesseur `NDEBUG` n'est pas définie, les assertions avec la macro `assert` n'ont pas d'effet (et ne sont donc pas vérifiées à l'exécution).
 
+```static_assert```, introduit avec **C++11**, permet de faire des assertion à la compilation.
+
 #### Liens et compléments
  - [A quoi correspondent les niveau d'assertion des attributs des contrats ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
- - [Qu'est-ce que le build level?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+ - [Qu'est-ce que le build level ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
+ - [Comment utiliser static_assert ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
 ## Dois-je préférer la macro C assert() ou l'attribut [[assert]] ?
 
 **En cours d'écriture**
+
+## Comment puis-je afficher un message d'erreur avec la macro assert ?
+
+Il est possible d'obtenir un semblant de message d'erreur avec la macro `assert` en profitant de l'astuce suivante :
+
+```cpp
+assert(condition && "Message d'erreur");
+```
+
+Dans cet exemple, la chaîne de caractère littérale `"Message d'erreur"` sera convertie à `true` dans un contexte booléen. L'assertion sera donc vraie que lorsque condition est vraie.
+
+De plus, étant donné que les compilateurs ajoutent souvent des informations sur l'assertion, le message d'erreur sera visible à l'utilisateur. Avec GCC 8.2 par exemple :
+
+```
+a.out: main.cpp:11: int main(): Assertion `condition && "Message d'erreur"' failed.
+bash: line 7:   975 Aborted                 (core dumped) ./a.out
+```
 
 ## Comment définir une pré/postcondition en C++ ?
 
