@@ -41,7 +41,10 @@ Si la constante préprocesseur `NDEBUG` n'est pas définie, les assertions avec 
 
 ## Dois-je préférer la macro C assert() ou l'attribut [[assert]] ?
 
-**En cours d'écriture**
+L'attribut `[[assert]]` devrait être préféré à l'ancienne macro C `assert` pour plusieurs raisons :
+ - Les macros sont gérées par le préprocesseurs plutôt que par le compilateur. Le système de remplacement de texte des macros effectué par le préprocesseur peut parfois mener à des comportements étranges. Par exemple, `assert(tuple == std::tuple{0, 0.2, 4})` ne compilera pas alors que `[[assert : tuple == std::tuple{0, 0.2, 4}]]` ne pose pas de problème.
+ - L'attribut `[[assert]]` propose le choix du niveau d'assertion ([A quoi correspondent les niveaux d'assertion des attributs de contrat](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md))
+ - Les attributs de contrat sont intégrés au langage. Le compilateur pourra possiblement profiter plus facilement des informations de l'attribut `[[assert]]` pour effectuer des optimisation et des diagnostics.
 
 ## Comment puis-je afficher un message d'erreur avec la macro assert ?
 
