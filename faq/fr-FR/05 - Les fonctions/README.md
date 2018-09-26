@@ -36,3 +36,44 @@ Pour plus d'information sur les fonctionnement du **function-try-block** et des 
 ## Quelle est la différence entre f(void); et f() ?
 
 ## Quel est l'intérêt d'un return dans une fonction retournant void ?
+
+Si la question porte sur l'instruction `return;`, alors il s'agit simplement d'un moyen de terminer la fonction dans le cas d'une fonction `void` :
+
+```cpp
+void foo() {
+    // ...
+    if (condition)
+        return; // retour de la fonction.
+    // ...
+}
+```
+Il est aussi possible de croiser ce genre de code :
+
+```cpp
+void foo();
+
+void bah() {
+    // ...
+    return foo() ; // Retour dans une fonction void.
+}
+```
+
+Cet exemple est valide en C++. Puisque `foo` retourne `void`, il est possible de retourner `foo()` dans une fonction retournant `void`.
+
+L’intérêt de faire une telle chose est que si un jour on décide de retourner un type `T` dans la fonction `foo` il suffira simplement de modifier le prototype de `bah` sans avoir à changer son corps. Cette notation permet également d'exprimer clairement que le type de retour de `bah` dépends de celui de `foo` d'un point de vue logique.
+
+En pratique, l'inférence de type permet de se passer de ce genre de technique désormais :
+
+```cpp
+void foo() {}
+
+auto bah() { // Avec auto (C++14).
+    // ...
+    return foo();   
+}
+
+decltype(foo()) boo(){ // Avec decltype (C++11).
+    // ...
+    return foo();
+}
+```
