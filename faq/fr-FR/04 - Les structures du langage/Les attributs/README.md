@@ -15,7 +15,7 @@ Cette section traite des attributs en C++ (introduits avec **C++11**).
 - [A quoi correspond l'attribut [[fallthrough]] ?](#a-quoi-correspond-lattribut-fallthrough-)
 - [A quoi correspond l'attribut [[nodiscard]] ?](#a-quoi-correspond-lattribut-nodiscard-)
 - [A quoi correspond l'attribut [[maybe_unused]] ?](#a-quoi-correspond-lattribut-maybe_unused-)
-- [A quoi correspond les attributs [[likely]] et [[unlikely]] ?](#a-quoi-correspond-les-attributs-likely-et-unlikely-)
+- [A quoi correspondent les attributs [[likely]] et [[unlikely]] ?](#a-quoi-correspondent-les-attributs-likely-et-unlikely-)
 - [A quoi correspond l'attribut [[no_unique_address]] ?](#a-quoi-correspond-lattribut-no_unique_address-)
 - [A quoi correspond l'attribut [[assert]] ?](#a-quoi-correspond-lattribut-assert-)
 - [A quoi correspondent les attributs [[expects]] et [[ensures]] ?](#a-quoi-correspondent-les-attributs-expects-et-ensures-)
@@ -286,7 +286,7 @@ On peut comparer ```[[maybe_unused]]``` à l’annotation **Java** ```@SupressWa
  - **[EN]** [cppreference.com – C++ attribute: maybe_unused](https://en.cppreference.com/w/cpp/language/attributes/maybe_unused)
  - **[EN]** [open-std.org | p0212r1 "Wording for [[maybe_unused]] attribute."](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0212r1.pdf)
 
-## A quoi correspond les attributs [[likely]] et [[unlikely]] ?
+## A quoi correspondent les attributs [[likely]] et [[unlikely]] ?
 
 Ces deux attributs ont été introduits avec **C++20** pour permettre d’indiquer au compilateur qu’une branche est plus probable que l’autre.
 
