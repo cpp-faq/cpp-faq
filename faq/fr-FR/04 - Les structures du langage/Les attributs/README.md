@@ -326,7 +326,7 @@ struct Empty {}; // empty class
 
 struct X {
     int i;
-    Empty e;
+    Empty e;  
 };
 
 struct Y {
