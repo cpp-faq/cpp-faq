@@ -8,7 +8,7 @@
 
 ## Quels sont les différents types de conversion disponibles en C++ ?
 
-Le C++ supporte quatre classes majeures de conversion, qui sont chacune explicitées dans cette section : 
+Le C++ supporte quatre classes majeures de conversion, qui sont chacune explicitées dans cette section :
  - Les conversions implicites, qui correspondent à toute les conversions effectuées automatiquement par défaut par le compilateur, par exemple la conversion d'un `int` en `double`.
  - Les conversions explicites de type C.
  - Les conversions explicites C++ :
@@ -16,9 +16,24 @@ Le C++ supporte quatre classes majeures de conversion, qui sont chacune explicit
   - `const_cast`.
   - `dynamic_cast`.
   - `reinterpret_cast`.
- - Les conversions définie par l'utilisateur (*user-defined*), qui peuvent être implicites ou explicites.
+ - Les conversions définies par l'utilisateur (*user-defined*), qui peuvent être implicites ou explicites.
 
 Certaines fonctions de la bibliothèque standard, telles que `std::bit_cast` ou `std::any_cast`, peuvent également être rangée dans la catégorie des conversions explicites.
+
+## Qu'est qu'une conversion implicite ?
+
+Au sens large, une conversion implicite correspond à toutes les conversions qui se sont pas explicitement demandée par le programmeur. Cette définition inclut donc les conversions implicites effectuées par le langage (*standard conversion*) ainsi que les conversions implicites définies par l'utilisateur (*user-defined conversion*).
+
+Le terme *conversion implicite* est souvent utilisé pour se référer uniquement aux conversions implicites standard. Ci-suit une liste non-exhaustive des conversions standards :
+  - les conversions numérique : promotion de type (entière ou flottante), conversion entière, flottante, entier en flottant, pointeurs et pointeurs sur membre...
+  - les conversions booléenne : depuis un entier, un flottant, un pointeur...
+  - les conversions contextuelles : en booléen (dans un `if`, `switch`, une boucle...), avec `noexcept`, un prédicat de contrat...
+  - les conversions de qualification (`const` et `volatile`).
+  - les conversions de valeurs : *lvalue* -> *rvalue*, tableau en pointeur, fonction en pointeur...
+
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com – C++ implicit conversion](https://en.cppreference.com/w/cpp/language/implicit_conversion)
 
 ## A quoi sert l'opérateur de conversion reinterpret_cast ?
 
