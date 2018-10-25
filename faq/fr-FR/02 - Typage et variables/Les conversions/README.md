@@ -18,7 +18,7 @@ Le C++ supporte quatre classes majeures de conversion, qui sont chacune explicit
   - `reinterpret_cast`.
  - Les conversions définies par l'utilisateur (*user-defined*), qui peuvent être implicites ou explicites.
 
-Certaines fonctions de la bibliothèque standard, telles que `std::bit_cast` ou `std::any_cast`, peuvent également être rangées dans la catégorie des conversions explicites.
+Certaines fonctions de la bibliothèque standard, telles que `std::bit_cast` ou `std::any_cast`, peuvent également être rangées dans la catégorie des conversions explicites. De la même manière, les bibliothèque peuvent fournir leurs propres moyen de conversion pour les types non standards.
 
 ## Qu'est qu'une conversion implicite ?
 
