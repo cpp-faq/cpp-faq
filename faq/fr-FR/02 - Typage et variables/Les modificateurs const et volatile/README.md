@@ -13,7 +13,19 @@ Les
 
 ## Qu'est-ce que les trigraphes en C++ ?
 
-Les trigrahes (supprimés avec **C++17**), sont des jetons préprocesseurs à trois symboles remplaçant certains symboles qu'il n'était pas possible de faire avec certains anciens claviers non standards.
+Les trigrahes (supprimés avec **C++17**), sont des jetons préprocesseurs à trois symboles remplaçant certains symboles qu'il n'était pas possible de faire avec certains anciens claviers non standards :
+
+| Trigraphe | Symbole |
+|:---------:|:-------:|
+|    ??<    |    {    |
+|    ??>    |    }    |
+|    ??(    |    [    |
+|    ??)    |    ]    |
+|    ??=    |    #    |
+|    ??/    |    \    |
+|    ??'    |    ^    |
+|    ??!    |  \barre  |
+|    ??-    |    ~    |
 
 
 
