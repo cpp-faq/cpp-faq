@@ -27,7 +27,9 @@ Les *opérateurs alternatifs* font parties des *jetons alternatifs*, avec les di
 
 ## Dois-je privilégier les opérateurs alternatifs (and) aux opérateurs classiques (&&) ?
 
-TODO()
+Les **opérateurs alternatifs** sont très peu utilisés de nos jours. Les développeurs sont largement plus habitué à l'utilisation des opérateurs classiques qu'à leur équivalent sous forme de mot clefs.
+
+Il est donc conseillé d'utiliser les opérateurs classiques plutôt que les opérateurs alternatifs puisque ceux qui liront votre code seront plus à l'aise avec les premiers, ce qui facilitera la compréhension et la maintenance de votre code.
 
 ## Qu'est ce que les digraphes en C++ ?
 
