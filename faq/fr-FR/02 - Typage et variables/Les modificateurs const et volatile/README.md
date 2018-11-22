@@ -6,7 +6,52 @@
 
 ## Qu'est-ce que les opérateurs alternatif en C++ ?
 
-Les
+Le **C++** propose un certain nombre d'opérateurs alternatifs permettant de remplacer certains symboles qui ne sont pas accessible sur certains claviers n'utilisant pas la norme ASCII 7-bits :
+
+ - `&&` : `and`.
+ - `||` : `or`.
+ - `!`  : `not`.
+ - `&` : `bit_and`.
+ - `|` : `bit_or`.
+ - `^` : `xor`.
+ - `~` : `compl`.
+ - `&=` : `and_eq`.
+ - `|=` : `or_eq`.
+ - `!=` : `not_eq`.
+ - `^=` : `xor_eq`.
+
+Les *opérateurs alternatifs* font parties des *jetons alternatifs*, avec les digraphes.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | Alternative operator representations](https://en.cppreference.com/w/cpp/language/operator_alternative)
+
+## Dois-je privilégier les opérateurs alternatifs (and) aux opérateurs classiques (&&) ?
+
+TODO()
+
+## Qu'est ce que les digraphes en C++ ?
+
+Les **digraphes** sont des *jetons alternatifs* au même titre que les *opérateurs alternatifs*. Les digraphes permettent de remplacer des symboles de ponctuation plutôt que des opérateurs :
+
+| Digraphe | Symbole |
+|:--------:|:-------:|
+|    <%    |    {    |
+|    %>    |    }    |
+|    <:    |    [    |
+|    :>    |    ]    |
+|    %:    |    #    |
+|   %:%:   |   ##    |
+
+Ci suit un exemple de code C++ utilisant les digraphes :
+
+```cpp
+%:include <iostream>
+
+int main(int argc, char* argv<::>)
+<%
+  std::cout << "Hello World !n";
+%>
+```
 
 #### Liens et compléments
  - **[EN]** [cppreference.com | Alternative operator representations](https://en.cppreference.com/w/cpp/language/operator_alternative)
@@ -28,7 +73,6 @@ Les trigrahes (supprimés avec **C++17**), sont des jetons préprocesseurs à tr
 |    ??-    |    ~    |
 
 
-
 Les trigraphes sont remplacés avant la reconnaissance des commentaires et des chaînes de caractères. Certains comportements inattendus peuvent se produire à cause des trigraphes :
 
 ```cpp
@@ -43,13 +87,11 @@ Ci-suit un exemple de code C++ utilisant les trigraphes :
 ```cpp
 ??=include <iostream>
 
-int main(int argc, char argv??(??))
+int main(int argc, char* argv??(??))
 ??<
   std::cout << "Hello World !??/n";
 ??>
-
 ```
-
 
 #### Liens et compléments
  - **[EN]** [cppreference.com | Alternative operator representations](https://en.cppreference.com/w/cpp/language/operator_alternative)
