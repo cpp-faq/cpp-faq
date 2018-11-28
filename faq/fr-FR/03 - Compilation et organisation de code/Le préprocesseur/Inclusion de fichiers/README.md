@@ -15,6 +15,9 @@
 
 Cette directive est principalement utilisée pour inclure des fichiers d'entête, qu'ils soient locals, standard ou viennent d'une bibliothèque tierce.
 
+#### Liens et compléments
+- **[EN]** [cppreference.com | Source file inclusion](https://en.cppreference.com/w/cpp/preprocessor/include)
+
 ## Quelle est la différence entre #include <header> et #include "header" ?
 
 La différence réside dans le fait que les deux ne vont pas aller chercher le fichier de la même façon.
