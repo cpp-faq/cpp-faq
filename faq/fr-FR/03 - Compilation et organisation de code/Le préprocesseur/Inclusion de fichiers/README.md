@@ -35,11 +35,29 @@ D'une manière générale, on utiliser donc `#include "filename"` pour les fichi
 #include "MyClass.h" // entête local au projet.
 #include "boost/program_options.hpp" // entête d'une bibliothèque locale (une grande partie de la bibliothèque est fournie sous forme d'entête autosuffisant, pouvant être simplement ajoutés localement).
 ```
+## Qu'est-ce qu'un header guard ?
+
+Le header guard est une technique permettant de s'assurer qu'un fichier d'entête (un *header*), n'est qu'inclu qu'une seule fois par unité de traduction.
+
+Cela se fait au moyen des directive `#ifdef`, `#define` et `#endif`. L'idée est de définir une variable préprocesseur qui sera définie lors de la première inclusion et qui permettra de vérifier si l'entête a déjà été inclu ou non :
+
+```cpp
+#ifndef MON_HEADER_H
+#define MON_HEADER_H
+
+// Code du header
+
+#endif // header guard : MON_HEADER_H
+```
+
+Les *header guards* peuvent provoquer des bugs inattendus lors de refactoring (cf [Dois-je privilégier les header guards ou #pragma once ?](<404>))
 
 ## A quoi sert \__has_include() en C++ ?
+
+
 
 ## Dois-je privilégier les header guards ou #pragma once ?
 
 
 
-## A quoi correspondent #ifdef et #ifndef ?
+https://en.wikipedia.org/wiki/Pragma_once

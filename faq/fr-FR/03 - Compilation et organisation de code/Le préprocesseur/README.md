@@ -41,6 +41,31 @@ Certains compilateurs supportent `#warning` permettant de ne déclencher qu'un a
 #### Liens et compléments
  - **[EN]** [cppreference.com | #error](https://en.cppreference.com/w/cpp/preprocessor/error)
 
+## A quoi sert la directive #line en C++ ?
+
+La directive `#line` propose deux fonctions assez proche : modifier le numéro de ligne en cours, qui sera donné par la macro prédéfinie `__LINE__` ou modifier le nom du fichier en cours contenu dans la macro `__FILE__` :
+
+```cpp
+#include <iostream>
+
+void print(int line, std::string file)
+{
+    std::cout << "Current line : " << line << "\nCurrent file : " << file << "\n\n";
+}
+
+int main()
+{
+  print(__LINE__, __FILE__);
+#line 41
+  print(__LINE__, __FILE__);
+#line 999 "Schtroupmf point cpp"
+  print(__LINE__, __FILE__);
+}
+```
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | #line](https://en.cppreference.com/w/cpp/preprocessor/line)
+
 ## A quoi sert la directive #pragma en C++ ?
 
 ## Qu'est ce que la directive \_Pragma() ?

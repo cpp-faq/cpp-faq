@@ -22,6 +22,9 @@ Le **C++** propose un certain nombre d'opérateurs alternatifs permettant de rem
 
 Les *opérateurs alternatifs* font parties des *jetons alternatifs*, avec les digraphes.
 
+
+Les *jetons alternatifs* sont remplacés lors de la [troisième phase](https://en.cppreference.com/w/cpp/language/translation_phases ) du processus de transformation d'un programme C++.
+
 #### Liens et compléments
  - **[EN]** [cppreference.com | Alternative operator representations](https://en.cppreference.com/w/cpp/language/operator_alternative)
 
@@ -94,6 +97,8 @@ int main(int argc, char* argv??(??))
   std::cout << "Hello World !??/n";
 ??>
 ```
+
+Les trigraphes sont remplacés lors de la [première phase](https://en.cppreference.com/w/cpp/language/translation_phases ) du processus de transformation d'un programme C++.
 
 #### Liens et compléments
  - **[EN]** [cppreference.com | Alternative operator representations](https://en.cppreference.com/w/cpp/language/operator_alternative)
