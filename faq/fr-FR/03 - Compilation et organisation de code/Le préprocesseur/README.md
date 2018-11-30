@@ -63,6 +63,10 @@ int main()
 }
 ```
 
+Les cas d'usage de cette directive sont assez rare. On peut notamment citer les cas où le code est généré par un outil de manière à ce que l'erreur de compilation affichée affiche celle du code modifié.
+
+Notez que n'importe quel macro qui s’étend en un entier positif est autorisé comme numéro de ligne. Le numéro de ligne maximum autorisé est *2147483647* (et était *32767* avant **C++11**).
+
 #### Liens et compléments
  - **[EN]** [cppreference.com | #line](https://en.cppreference.com/w/cpp/preprocessor/line)
 
