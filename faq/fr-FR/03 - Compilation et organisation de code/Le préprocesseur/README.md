@@ -124,7 +124,25 @@ Ici, `#define PACK(n) #pragma pack(n)` n'aurait pas fonctionné puisque `#` est 
 
 #### Liens et compléments
  - **[EN]** [cppreference.com | Implementation defined behavior control](https://en.cppreference.com/w/cpp/preprocessor/impl)
-  - **[EN]** [gigatux.nl | The _Pragma Operator control](http://books.gigatux.nl/mirror/cinanutshell/0596006977/cinanut-CHP-14-SECT-7.html)
-
+- **[EN]** [gigatux.nl | The _Pragma Operator control](http://books.gigatux.nl/mirror/cinanutshell/0596006977/cinanut-CHP-14-SECT-7.html)
 
 ## A quoi servent #if, #elif et #else ?
+
+## A quoi correspondent #ifdef et #ifndef ?
+
+Ces deux directives permettent de tester si un identifiant est défini en temps que macro préprocesseur. Celles-ci correspondent à des `#if` :
+
+```cpp
+#ifndef Windows // correspond à #if defined(VALUE)
+// Do something for non Windows systems.
+#elif Windows > 10
+// Do something for Windows 10...
+#endif
+  
+
+#ifndef MY_ID // correspond à #if !defined(VALUE)
+#define MY_ID 33
+#endif
+```
+
+Ces directives sont souvent utilisé pour les [header guards](404).
