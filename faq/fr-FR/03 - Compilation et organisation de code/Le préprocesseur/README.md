@@ -72,6 +72,25 @@ Notez que n'importe quel macro qui s’étend en un entier positif est autorisé
 
 ## A quoi sert la directive #pragma en C++ ?
 
+La directive `#pragma` permet de définir un comportement dépendant de l'implémentation. Elle permet aux compilateurs de fournir leurs propres directives préprocesseur :
+
+```cpp
+#pragma once // Alternative aux header guards sur la majorité des compilateurs
+
+#pragma warning 5038 // Suppression de l'avertissement 5038 sur MSVC.
+#pragma optimise ("O3") // Activation du niveau d'optimisation 3 sur GCC.
+...
+
+#pragma omp parallel for // Indique que la boucle for suivante doit être parallèlisée (bibliothèque OpenMP).
+for(int i = 0; i < size; ++i)
+    ...
+```
+
+Si un compilateur ne reconnait pas un pragma, il doit l'ignorer.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | Implementation defined behavior control](https://en.cppreference.com/w/cpp/preprocessor/impl)
+
 ## Qu'est ce que la directive \_Pragma() ?
 
 ## A quoi servent #if, #elif et #else ?
