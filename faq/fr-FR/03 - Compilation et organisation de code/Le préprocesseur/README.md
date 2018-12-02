@@ -91,6 +91,40 @@ Si un compilateur ne reconnait pas un pragma, il doit l'ignorer.
 #### Liens et compléments
  - **[EN]** [cppreference.com | Implementation defined behavior control](https://en.cppreference.com/w/cpp/preprocessor/impl)
 
-## Qu'est ce que la directive \_Pragma() ?
+## Quelle est la différence entre #pragma et \_Pragma() ?
+
+Depuis **C++11**, l'opérateur préprocesseur `_Pragma()` est disponible (hérité du **C99**). Celui-ci effectue des opération sur l'entrée avant de la passer à la directive `#pragma`. Concrètement, l'éventuel préfixe `L` de la chaîne de caractère est enlevé, ainsi que les `"` et les espaces blancs externes, les séquences `\"` et '\\' sont remplacées respectivement par '"' et `\` et ensuite, les symboles préprocesseur présents sont remplacé. Enfin, le résultat est passé à `#pragma` :
+
+```cpp
+_Pragma("once") // équivalent à : #pragma once
+_Pragma(L"comment(compiler, \"A comment\")") // équivalent à : #pragma comment(compiler, "A comment")
+```
+
+Cet opérateur est destiné à être utilisé lorsque vous souhaitez construire l'argument de `#pragma` à partir de jetons préprocesseurs :
+
+```cpp
+#define STR(s) #s // transforme en chaîne de caractère
+#define PACK(n) _Pragma(STR(pack(n)))
+
+#PACK(2) // équivalent à : #pragma pack(2)
+struct foo {  
+   int i;  
+   short j;  
+};
+
+PACK(16)
+struct foo2 {
+  long double d1;
+  long double d2;
+}
+
+```
+
+Ici, `#define PACK(n) #pragma pack(n)` n'aurait pas fonctionné puisque `#` est l'opérateur préprocesseur pour transformer en chaîne de caractère. Avec l'opérateur `_Pragma`, il est possible de définir la macro `PACK`.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | Implementation defined behavior control](https://en.cppreference.com/w/cpp/preprocessor/impl)
+  - **[EN]** [gigatux.nl | The _Pragma Operator control](http://books.gigatux.nl/mirror/cinanutshell/0596006977/cinanut-CHP-14-SECT-7.html)
+
 
 ## A quoi servent #if, #elif et #else ?
