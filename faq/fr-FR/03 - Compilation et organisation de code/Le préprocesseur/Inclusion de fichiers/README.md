@@ -58,6 +58,17 @@ Les *header guards* peuvent provoquer des bugs inattendus lors de refactoring (c
 
 ## Dois-je privilégier les header guards ou #pragma once ?
 
+Cette question suscite aujourd'hui encore le débat et il n'y a pas de règle universelle. Nous allons présenter ici les différents arguments en faveur des deux techniques.
 
+`#pragma once` est directement dépendent du système de fichier sous-jascent, ce qui peut poser parfois problème (avec des liens symboliques par exemple) et un risque de comportement différent en fonction de la plateforme. `#pragma once`, s'il n'est pas standard, est en pratique supporté par la majorité des compilateurs. [Ce tableau](https://en.wikipedia.org/wiki/Pragma_once#Portability) présente le support de la directive pour 17 compilateurs, parmi lesquels seul *Cray C++ Compiler* ne le supporte pas.
 
-https://en.wikipedia.org/wiki/Pragma_once
+Les *includes guards* peuvent être dangereux, puisque si un identifiant est malencontreusement choisit en double, l'erreur sera difficile à repérer. Ce sont des choses qui peuvent arriver dans de grands projets ou en cas de refactoring. `#pragma once` évite ce genre de problèmes.
+
+Pour autant, les systèmes de builds voir les IDEs peuvent faciliter l'usage des **include guards** en générant par exemple automatiquement l'identifiant (en fonction du nom du fichier, d'un nom de module, de namespace ou encore avec un timestamp). Cela évite le risque de collision des identifiants mais demande l'utilisation d'outils supplémentaires et on peut considérer que cela revient alors aux mêmes problématiques que la dépendance qu'avec le système de fichiers.
+
+Notez enfin `#pragma once` est souvent optimisé par les compilateurs, mais c'est parfois aussi le cas pour les **includes guards**. Il reste aussi envisageable d'utiliser les deux en même temps.
+
+#### Liens et compléments
+- **[EN]** [cppreference.com | Implementation defined behavior control - #pragma once](https://en.cppreference.com/w/cpp/preprocessor/impl)
+- **[EN]** [stackoverflow.com | #pragma once vs include gaurds ?](https://stackoverflow.com/questions/1143936/pragma-once-vs-include-guards)
+- **[EN]** [wikipedia.org | #pragma once](https://en.wikipedia.org/wiki/Pragma_once)
