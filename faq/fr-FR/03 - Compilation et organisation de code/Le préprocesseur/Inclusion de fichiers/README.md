@@ -54,7 +54,24 @@ Les *header guards* peuvent provoquer des bugs inattendus lors de refactoring (c
 
 ## A quoi sert \__has_include() en C++ ?
 
+Le **C++17** a introduit l'opérateur `__has_include()` retournant un booléen déterminant si un entête est disponible. Une utilité évidente est de tester la présence d'un entête standard et d'inclure un substitut le cas échéant :
 
+```cpp
+#ifdef __has_include                           // Vérification de la présence de __has_include
+#  if __has_include(<optional>)                // Test de la présence de std::optional.
+#    include <optional>
+     template<typename T> using optional = std::optional<T>;
+#  elif __has_include(<experimental/optional>) // Test de la présence de la version expérimentale.
+#    include <experimental/optional>
+     template<typename T> using optional = std::experimental::optional<T>;
+#  else                                        // Utilisation d'une version personnalisée.
+#    include <myoptional.hpp>
+     template<typename T> using optional = mylib::optional<T>;
+#  endif
+#endif
+```
+
+Ici, le type `optional` sera choisit en fonction des entêtes disponibles. Cela peut-être particulièrement pratique lorsqu'on travaille avec une fonctionnalité qui n'est pas disponible sur tous les compilateurs qu'on utilise.
 
 ## Dois-je privilégier les header guards ou #pragma once ?
 
