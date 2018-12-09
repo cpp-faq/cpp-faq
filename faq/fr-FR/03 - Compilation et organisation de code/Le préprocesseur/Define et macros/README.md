@@ -38,6 +38,17 @@ std::cout << MULTIPLY_S(21 + 33, 6) << '\n';
 
 ## Peut-on écrire une macro sur plusieurs lignes ?
 
+Pour écrire une macro sur plusieurs ligne, il faut utiliser le fait que lorsqu'une ligne se termine par le caractère '\' (sauf si on est dans un commentaire ou une chaîne de caractère bien entendu), le préprocesseur va accoler la lignes suivante à la suite de cette ligne (il va supprimer le saut de ligne) :
+
+```cpp
+#define DO_X_TIME(n, code) for(auto i = 0; i < (n); ++i) {\
+    code\
+  }
+
+DO_X_TIME(5, std::cout << "Bonjour !\n";);
+// étendu en : for(auto i = 0; i < (5); ++i) {    std::cout << "Bonjour !\n";    }
+```
+
 ## Quelles sont les différences entre les fonctions classiques et les fonctions macros ?
 
 ## Comment déclarer une macro variadique ?
