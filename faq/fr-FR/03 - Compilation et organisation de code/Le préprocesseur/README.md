@@ -21,7 +21,7 @@ Le C++ compte 12 directives préprocesseur en C++ :
 #### Liens et compléments
  - **[EN]** [cppreference.com | Preprocessor](https://en.cppreference.com/w/cpp/preprocessor)
 
-## A quoi servent #define et #unsef en C++ ?
+## A quoi servent #define et #unset en C++ ?
 
 ## A quoi sert la directive #error en C++ ?
 
@@ -126,7 +126,24 @@ Ici, `#define PACK(n) #pragma pack(n)` n'aurait pas fonctionné puisque `#` est 
  - **[EN]** [cppreference.com | Implementation defined behavior control](https://en.cppreference.com/w/cpp/preprocessor/impl)
 - **[EN]** [gigatux.nl | The _Pragma Operator control](http://books.gigatux.nl/mirror/cinanutshell/0596006977/cinanut-CHP-14-SECT-7.html)
 
-## A quoi servent #if, #elif et #else ?
+## A quoi servent #if, #elif, #else et #endif ?
+
+Ces trois directive permettent l'inclusion conditionnelles de code et correspondent à une structure si/sinon si/sinon/fin si. Le code inclus sera dépendant des conditions qui peuvent être de macros ou les opérateurs `defined()` ou `__has_include()`. Les expression n'étant pas booléennes sont remplacées par `0`. La condition est considérée comme vraie si l'expression est différente de `0` (`false`).
+
+Un cas d'utilisation classique est la compilation conditionnelles de code dépendant de la plateforme cible :
+
+```cpp
+#if defined(WINDOWS)
+#   include <Windows.h>
+#elif defined(UNIX)
+#   include <unistd.h>
+#else
+#   error Unknown platform
+#endif
+```
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | Conditional inclusion](https://en.cppreference.com/w/cpp/preprocessor/conditional)
 
 ## A quoi correspondent #ifdef et #ifndef ?
 
@@ -138,11 +155,26 @@ Ces deux directives permettent de tester si un identifiant est défini en temps 
 #elif Windows > 10
 // Do something for Windows 10...
 #endif
-  
 
 #ifndef MY_ID // correspond à #if !defined(VALUE)
 #define MY_ID 33
 #endif
 ```
 
-Ces directives sont souvent utilisé pour les [header guards](404).
+Ces directives sont souvent utilisé pour les [header guards](404). Notez aussi, qu'il n'est pas possible d'utiliser des multiples conditions avec ̀`#ifdef` et ̀ #ifndef` :
+
+```cpp
+#if defined(WINDOWS) && !defined(LINUX)
+   // ...
+#endif
+
+// Equivalent avec #ifdef et #ifndef
+#ifdef WINDOWS
+#ifndef LINUX
+   // ...
+#endif
+#endif
+```
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com | Conditional inclusion](https://en.cppreference.com/w/cpp/preprocessor/conditional)

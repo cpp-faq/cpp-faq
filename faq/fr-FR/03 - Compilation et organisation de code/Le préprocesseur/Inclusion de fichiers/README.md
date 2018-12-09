@@ -33,7 +33,8 @@ D'une manière générale, on utiliser donc `#include "filename"` pour les fichi
 #include <QMainWindow> // entête Qt, supposé ici préinstallé dans les répertoires d'include du compilateur.
 
 #include "MyClass.h" // entête local au projet.
-#include "boost/program_options.hpp" // entête d'une bibliothèque locale (une grande partie de la bibliothèque est fournie sous forme d'entête autosuffisant, pouvant être simplement ajoutés localement).
+#include "boost/program_options.hpp" /* entête d'une bibliothèque locale (une grande partie de la
+  bibliothèque est fournie sous forme d'entête autosuffisant, pouvant être simplement ajoutés localement).*/
 ```
 ## Qu'est-ce qu'un header guard ?
 
