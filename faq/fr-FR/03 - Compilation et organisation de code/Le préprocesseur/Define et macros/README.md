@@ -61,9 +61,17 @@ L'opérateur `#`, dans une *function-macro*, permet de transformer un jeton pré
 #define STR(x) #x
 
 std::cout << STR(Hello world!\n);
-// donne : std::cout << "Hello World!\n";
+// donne : std::cout << "Hello World!\\n";
 std::cout << STR({"name" : "C++"}\n);
-// donne : std::cout << "{\"name\" : \"C++\"}\n";
+// donne : std::cout << "{\"name\" : \"C++\"}\\n";
+```
+
+Lorsqu'il est accolé à `__VA_ARGS__`, dans une fonction macro variadique, la totalité de `__VA_ARGS__` est convertie en chaîne de caractère :
+
+```cpp
+#define FOO(...) std::cout << #__VA_ARGS__
+FOO(12.0, "\n", 32, std::make_pair(2, 2));
+// Donne : std::cout << "12.0, \"\\n\", 32, std::make_pair(2, 2)";
 ```
 
 #### Liens et compléments
@@ -71,3 +79,5 @@ std::cout << STR({"name" : "C++"}\n);
 
 ## Comment concaténer deux jetons préprocesseurs ?
   => alias : "A quoi sert l'opérateur ## du préprocesseur ?"
+
+L'opérateur `##` du préprocesseur permet la concaténation de jetons préprocesseurs. Ci-suit un exemple d'utilisation :
