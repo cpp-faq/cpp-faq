@@ -53,6 +53,10 @@ Cela se fait au moyen des directive `#ifdef`, `#define` et `#endif`. L'idée est
 
 Les *header guards* peuvent provoquer des bugs inattendus lors de refactoring (cf [Dois-je privilégier les header guards ou #pragma once ?](<404>))
 
+## Comment résoudre le problème des dépendances croisées ?
+
+TODO()
+
 ## A quoi sert \__has_include() en C++ ?
 
 Le **C++17** a introduit l'opérateur `__has_include()` retournant un booléen déterminant si un entête est disponible. Une utilité évidente est de tester la présence d'un entête standard et d'inclure un substitut le cas échéant :

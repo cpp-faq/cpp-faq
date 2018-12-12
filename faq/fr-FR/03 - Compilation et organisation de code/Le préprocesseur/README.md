@@ -21,8 +21,6 @@ Le C++ compte 12 directives préprocesseur en C++ :
 #### Liens et compléments
  - **[EN]** [cppreference.com | Preprocessor](https://en.cppreference.com/w/cpp/preprocessor)
 
-## A quoi servent #define et #unset en C++ ?
-
 ## A quoi sert la directive #error en C++ ?
 
 `#error` permet de déclencher une erreur lors du passage du préprocesseur. Il met fin au processus de compilation qui termine avec le message d'erreur précisé :
