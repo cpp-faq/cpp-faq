@@ -15,7 +15,7 @@ La directive `#define` permet l'introduction de nouveaux identifiants préproces
 std::cout << MUL(PI, PI) << '\n'; // affiche : 9.86902
 ```
 
-La directive `#undef` permet de supprimer la déclaration d'un identifiants préprocesseur. Si celui-ci n'est pas défini, la directive est ignorée :
+La directive `#undef` permet de supprimer la déclaration d'un identifiant préprocesseur. Si celui-ci n'est pas défini, la directive est ignorée :
 
 ```cpp
 #define MUL(a, b) ((a) * (b))
@@ -25,6 +25,8 @@ std::cout << MUL(3, 2) << '\n';
 #undef MUL
 
 std::cout << MUL(4, 3) << '\n'; // Erreur : le symbole MUL n'est pas défini.
+
+#undef MUL // MUL n'est pas défini, la directive est sans effet.
 ```
 
 #### Liens et compléments

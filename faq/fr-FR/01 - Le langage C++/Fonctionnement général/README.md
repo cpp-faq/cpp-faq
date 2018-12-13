@@ -4,7 +4,6 @@ Cette section réponds aux questions concernant le fonctionnement général du l
 
 ### Sommaire
 
- - [Pourquoi cette FAQ ?](#pourquoi-cette-faq-)
 
 ## Quel est le minimum d'un programme C++ ?
 

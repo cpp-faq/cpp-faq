@@ -58,7 +58,6 @@ Notez également que `typedef` ne permet pas directement la création d'aliases 
 #### Liens et compléments
  - **[EN]** [cppreference.com – typedef](https://en.cppreference.com/w/cpp/language/typedef)
 
-
 ## Dois-je préférer typedef ou using pour déclarer un alias sur un type ?
 
 Dans la mesure du possible, préférez l'utilisation de `using` pour déclarer un alias. `using` utilise une syntaxe plus naturelle et supporte nativement les aliases sur des types paramétrés.
