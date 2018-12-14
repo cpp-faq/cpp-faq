@@ -10,9 +10,72 @@
 
 ## Quels sont les types fondamentaux en C++ ?
 
-## Quelle est la taille des types entier en C++ ?
+Les types fondamentaux en **C++** sont les suivants :
+ - le type booléen : `bool`.
+ - les types entiers : `short int`, `int`, `long int`, `long long int` (**C++11**) et équivalents non-signés ([Quels sont les types entiers fondamentaux ?](404)).
+ - les types caractères : `char`, `signed char`, `unsigned char`, `wchar_t`, `char16_t` (**C++11**), `char32_t` (**C++11**) et `char8_t` (**C++20**).
+ - les types flottant : `float`, `double` et `long double` (**C++11**).
+ - le type `void`.
 
-## Comment sont coder les types entiers en C++ ?
+Le standard propose aussi d'autres types qui ne sont pas considérés comme *fondamentaux*, définis dans l'entête *<cstddef>* :
+ - ̀`std::size_t` : type correspondant à une taille, (il s'agit aussi du type de retour des opérateurs `sizeof` et ̀`alignas`).
+ - `std::nullptr_t` : il s'agit du type de `nullptr`, le littéral correspondant à la valeur d'un pointeur nul.
+ - `std::ptrdiff_t` : un type entier signé obtenu en soustrayant deux pointeurs.
+ - `std::byte` : un type entier non signé utilisé pour manipuler des bytes (sans leur attribuer de sémantique particulière).
+ - `std::maxalign_t` : correspondant a un type dont l'alignement requis est au moins aussi grand que le maximum de tous les types scalaires (entiers et flottant).
+ - On peut également citer les macros `NULL` et `offsetof`.
+
+#### Liens et compléments
+  - **[EN]** [cppreference.com - Fundamentals types](https://en.cppreference.com/w/cpp/language/types)
+  - **[EN]** [cppreference.com - Type support](https://en.cppreference.com/w/cpp/types)
+
+## Comment connaître la valeur maximale d'un type entier ou flottant (scalaires) ?
+
+## Quels sont les littéraux entiers autorisés en C++ ?
+
+Les suffixes (*integer-suffix*) `u`, `l` et `ll` (et leurs équivalents en majuscule) permettent de définir le type correspondant du littéral entier. Ils peuvent être combinés :
+
+```cpp
+auto i   = 13;      // int
+auto ui  = 13u;     // unsigned int
+auto l   = 13l;     // long int
+auto ul  = 13ul;   // unsigned long int
+auto ll  = 13ll;   // long long int
+auto ull = 13ull;  // unsigned long long int
+```
+
+Notez qu'il n'existe pas de littéral entier pour le type `short` en **C++** (`static_cast<short>(13)` est de type `short` en revanche).
+
+Il est également possible d'utiliser les préfixes `0`, ̀`0x`, `0b` (**C++14**) pour modifier la base :
+
+```cpp
+auto i = 42;    // littéral en base 10 (par défaut).
+auto i = 0b10;  // littéral en base 2  (binaire). depuis C++14
+auto i = 07182;   // littéral en base 8  (octale).
+auto i = 0xAB33;  // littéral en base 16 (hexadécimale).
+```
+
+Les chiffres ̀`a`, `b`, `c`, `d`, `e`, `f` peuvent être écrits indifféremment en minuscule ou en majuscule. En raison de la notation de la base 8, `0123` et `123` ne sont pas équivalents en **C++**.
+
+Enfin, il est possible d'insérer des quotes `'`, non consécutives, dans une constante littérale entière depuis **C++14** pour simplifier la lisibilité des très grands nombres : `std::cout << "J'ai gagné : " << 18'207'395'723'507ll << " euros !\n";`
+
+#### Liens et compléments
+  - **[EN]** [cppreference.com - Integer literals](https://en.cppreference.com/w/cpp/language/integer_literal)
+
+## Quelle est la taille des types entiers en C++ ?
+
+Tout comme le **C**, le standard **C++** ne fixe pas la taille des types entiers. Cependant il existe un certain nombre de garanties proposées par la norme :
+ - `1` <= `sizeof(short)` <= `sizeof(int)` <= `sizeof(long)` <= `sizeof(long long)`.
+ - une taille minimale en bits est garanti pour les types entiers (et leurs équivalents non-signés) :
+  - `short` : au moins 16 bits.
+  - `int` : au moins 16 bits.
+  - `long` : au moins 32 bits.
+  - `long long` : au moins 64 bits.
+
+#### Liens et compléments
+ - **[EN]** [cppreference.com - Fundamentals types](https://en.cppreference.com/w/cpp/language/types)
+
+## Comment sont codés les types entiers en C++ ?
 
 Le codage en [complément à deux](https://fr.wikipedia.org/wiki/Compl%C3%A9ment\_%C3%A0\_deux) est imposé par la norme depuis **C++20**.
 
