@@ -31,6 +31,23 @@ Le standard propose aussi d'autres types qui ne sont pas considérés comme *fon
 
 ## Comment connaître la valeur maximale d'un type entier ou flottant (scalaires) ?
 
+L'entête *<limits>* fourni la classe template `std::numeric_limit` permettant d'obtenir la valeur maximale et minimale d'un type scalaire :
+
+```cpp
+#include <limits>
+
+// ...
+
+std::cout << std::numeric_limits<int>::max() << '\n';       // sortie possible : 2147483647
+std::cout << std::numeric_limits<double>::min() << '\n';    // sortie possible : 2.22507e-308
+std::cout << std::numeric_limits<double>::lowest() << '\n'; // sortie possible : -1.79769e+308
+```
+
+`min` retourne la plus petite valeur positive possible pour les flottants, `lowest` permet d'obtenir la borne minimale négative. `numeric_limit` permet également de récupérer beaucoup d'autres informations telles que le style d'arrondi (̀`std::numeric_limit<char>::round_style()`) ou le maximum/minimum de l'exposant d'un type flottant (`std::numeric_limit<float>::min_exponent()`).
+
+#### Liens et compléments
+  - **[EN]** [cppreference.com - std::numeric_limits](https://en.cppreference.com/w/cpp/types/numeric_limits)
+
 ## Quels sont les littéraux entiers autorisés en C++ ?
 
 Les suffixes (*integer-suffix*) `u`, `l` et `ll` (et leurs équivalents en majuscule) permettent de définir le type correspondant du littéral entier. Ils peuvent être combinés :
