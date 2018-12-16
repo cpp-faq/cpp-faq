@@ -6,6 +6,24 @@
 
 **En cours d'écriture**
 
+## Quels sont les litéraux booléens en C++ ?
+
+`true` et `false` sont les deux litéraux booléens en C++. Cependant, en raison des règles de [conversion implicites](404), des constantes entières peuvent être utilisée pour initialiser des booléens. Toute valeur différente est converti en `true` et une valeur nulle est convertie en `false` :
+
+```cpp
+bool b = 0;
+bool b2 = 42;
+bool b3 = -33;
+
+std::cout << std::boolalpha << b << " " << b2 << " " << b3 << '\n';
+// affiche : false true true
+```
+
+A l'inverse, `true` est converti en `1` dans un contexte entier et `false` est converti en `0`.
+
+#### Liens et compléments
+  - **[EN]** [cppreference.com - Boolean literals](https://en.cppreference.com/w/cpp/language/bool_literal)
+
 ## Quels sont les littéraux entiers autorisés en C++ ?
 
 Les suffixes (*integer-suffix*) `u`, `l` et `ll` (et leurs équivalents en majuscule) permettent de définir le type correspondant du littéral entier. Ils peuvent être combinés :
