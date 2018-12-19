@@ -54,3 +54,83 @@ Enfin, il est possible d'insérer des quotes `'`, non consécutives, dans une co
 
 #### Liens et compléments
   - **[EN]** [cppreference.com - Integer literals](https://en.cppreference.com/w/cpp/language/integer_literal)
+
+## Quels sont les littéraux flottants autorisés en C++ ?
+
+Un littéral flottant est composé d'une partie entière (avec le signe) et d'une partie réelle séparé par un point ainsi que d'un exposant :
+
+```
+auto d1 = 0.1;
+audo d2 = .5e-1;
+auto d3 = -10.;
+auto d4 = 123e2;
+```
+
+Seule l'une des deux parties (entière et réelle) est obligatoire. Le point n'est pas obligatoire lorsque l'exposant est spécifié. L'exposant correspond au symbole `e` ou `E` (ou `p` et `P` en notation hexadécimale depuis **C++17**) et de la valeur de l'exposant. La partie avant l'exposant est la *mantisse*. Le nombre a pour valeur `n ~= mantisse * 10 ^ exposant` (en réalité ce n'est pas un égalité stricte puisqu'il peut s'agir d'une valeur approchée, le nombre étant stocké en binaire) :
+
+```
+auto d1 = 1e3;      // d1 ~= 1   * 10^3   = 1000.
+auto d2 = -0.5e-10;  // d2 ~= 0.5 * 10^-10 = -0.00000000005;
+auto d3 = 6.02214086e23 // constante d'Avogadro.
+```
+
+Par défaut, un littéral flottant est de type `double`, les suffixes suffixes `f` et `l` (et leurs équivalents en majuscule) permettent d'obtenir respectivement un littéral de type `float` et `long double`.
+
+```cpp
+auto f   = 42.f;    // float
+auto d   = 42;      // double
+auto ld  = 42.l;    // long double
+auto e   = 42f;     // erreur, litéral entier avec suffixe 'f'
+auto l   = 42L;     // long
+```
+
+Tout comme pour les littéraux entiers, il est possible d'utiliser des *simple quotes* comme séparateur de chiffre, à la fois pour la mantisse et pour l'exposant :
+
+```
+auto ld = 142'849.124'774'1e1'1L;
+```
+
+Depuis **C++17**, il est également possible d'écrire les littéraux flottant en [notation hexadécimale](faq://hexa-float) avec le préfixe `0x`.
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - floating point literal](https://en.cppreference.com/w/cpp/language/floating_literal)
+
+## Comment fonctionne un littéral flottant hexadécimal ?
+
+Le suffixe `0x` peut-être utilisé pour écrire un littéral flottant en notation hexadécimale depuis **C++17**. Cette notation a l'avantage de permettre d'éviter les conversions dues à l’imprécision des flottants.
+
+Étant donné que `e` est un chiffre hexadécimal, `p` (et `P`) est utilisé pour indiquer l'exposant dans ce cas. En notation hexadécimale, l'exposant est obligatoire :
+
+```cpp
+auto d = 0xA0p2;
+```
+
+La **mantisse** est écrite en base hexadécimale, l'**exposant** quant à lui est en décimal. Le nombre vaut `n ~= mantisse * 2^exposant` :
+ - mantisse = `0xA0` = `0b10100000` = `160`.
+ - exposant = `2`.
+ - d = `160 * 2^2 = 640`.
+
+Ci-suit quelques exemples de flottant en hexadécimal :
+
+```cpp
+std::cout << std::setprecision(30); // #include <iomanip>
+std::cout << 0xFFp0 << '\n';                    
+std::cout << 0x0.1p0 << '\n';
+std::cout << 0x100p6 << '\n';
+std::cout << 0x1p-1 << '\n';
+std::cout << 0xae3p2 << '\n';
+std::cout << 0x7'123'456'1BC'DEF << '\n';
+std::cout << 142'849e20l;
+/* affiche :
+255
+0.0625
+16384
+0.5
+11148
+1990340829236719
+14284900000000000000000000
+*/
+```
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - floating point literal](https://en.cppreference.com/w/cpp/language/floating_literal)
