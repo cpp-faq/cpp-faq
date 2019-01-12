@@ -51,7 +51,7 @@ Cela se fait au moyen des directive `#ifdef`, `#define` et `#endif`. L'idée est
 #endif // header guard : MON_HEADER_H
 ```
 
-Les *header guards* peuvent provoquer des bugs inattendus lors de refactoring (cf [Dois-je privilégier les header guards ou #pragma once ?](<404>))
+Les *header guards* mal nommés peuvent provoquer des bugs inattendus lors de refactoring (cf [Dois-je privilégier les header guards ou #pragma once ?](<404>)).
 
 ## Comment résoudre le problème des dépendances croisées ?
 

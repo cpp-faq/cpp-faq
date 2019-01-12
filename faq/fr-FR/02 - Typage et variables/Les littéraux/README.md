@@ -52,6 +52,10 @@ Les chiffres ̀`a`, `b`, `c`, `d`, `e`, `f` peuvent être écrits indifféremmen
 
 Enfin, il est possible d'insérer des quotes `'`, non consécutives, dans une constante littérale entière depuis **C++14** pour simplifier la lisibilité des très grands nombres : `std::cout << "J'ai gagné : " << 18'207'395'723'507ll << " euros !\n";`
 
+Notez que le **C++** ne possède pas de littéraux négatifs. `-213` est une expression comportant le littéral entier `213`, de type `int` et l'opérateur unaire `-`.
+
+Le **C++** autorise également les [littéraux multi-caractères](404.md), qui sont de type `int`.
+
 #### Liens et compléments
   - **[EN]** [cppreference.com - Integer literals](https://en.cppreference.com/w/cpp/language/integer_literal)
 
@@ -134,3 +138,85 @@ std::cout << 142'849e20l;
 
 #### Liens et compléments
 - **[EN]** [cppreference.com - floating point literal](https://en.cppreference.com/w/cpp/language/floating_literal)
+
+## Quels sont les littéraux caractères en C++ ?
+
+Un littéral caractère en C++ est entouré de simple quote `'` :
+
+```cpp
+auto c = 'a';
+std::cout << c;
+```
+
+Par défaut, un littéral caractère est de type `char`. Cependant, des suffixes permettent de modifier le type de la constante littérale :
+
+```cpp
+auto a = u8'a'; // char8_t  : encodage UTF8
+auto b = u'a';  // char16_t : encodage UCS-2
+auto c = U'a';  // char32_t : encodage UCS-4
+auto d = L'a';  // wchar_t
+```
+
+Les préfixes `u` et `U` ont été introduits avec **C++11**. `u8`, introduit avec **C++17**, correspondait originellement au type `char` et est de type `char8_t` depuis **C++20**.
+
+Le **C++** autorise également les [littéraux multi-caractères](404.md).
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - character literal](https://en.cppreference.com/w/cpp/language/character_literal  )
+
+## Qu'est ce que les littéraux char multicaractères ?
+
+Le **C++** autorise un cas assez particulier de littéraux de type `int`. Il s'agit d'une suite de caractères délimité par une simple quote `'`. Le standard indique que la valeur de l'`int` résultant est laissée au choix du compilateur (*implementation-defined*) et que cette fonctionnalité est *conditionnaly supported*, c'est-à-dire qu'un compilateur n'est pas obligé de la proposer.
+
+```cpp
+auto a = 'Oui';
+auto b = 'C++';     
+auto c = 'ABCDEFG';  
+
+std::cout << a << '\n'; // GCC 8.1 : 5207401
+std::cout << b << '\n'; // GCC 8.1 : 4401963
+std::cout << c << '\n'; // GCC 8.1 : 1145390663
+```
+
+Notez que cette fonctionnalité déclenche souvent des avertissements sur un compilateur bien configuré, de manière à pouvoir signaler les erreurs lorsque l'utilisateur voulait en réalité déclarer une chaîne de caractères littérale.
+
+Les *multicharacter literals* trouvent cependant leurs utilités, notamment pour fixer des valeurs entières facilement reconnaissables en binaire :
+
+```
+enum class Side { left = 'left', right = 'righ', top = ' top', bottom = ' bot' }
+
+auto side = Side::left;
+```
+
+Dans l'exemple ci-dessus, la valeur entières de `side` correspondra à `0x6C656674`, qui correspond à `left` en ASCII et permet donc de faciliter le debugage par exemple.  
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - character literal](https://en.cppreference.com/w/cpp/language/character_literal  )
+- **[EN]** [wikipedia.org - ASCII](https://en.wikipedia.org/wiki/ASCII)
+
+## Quelles sont les séquences d'échappement autorisées en C++ ?
+
+Les séquences d'échappement (utilisables dans les littéraux caractères et chaînes de caractères) définies par le standard :
+
+|Séquence | Caractère correspondant|
+|:-------:|:----------------------:|
+|`\'`| `'` (ASCII : 0x27)|
+|`\"`| `"` (ASCII : 0x22)|
+|`\?`| `?` (ASCII : 0x3f)|
+|`\\`| `\` (ASCII : 0x5c)|
+|`\a`| alerte (ASCII : 0x07)|
+|`\b`| retour arrière (ASCII : 0x08)|
+|`\f`| nouvelle page (ASCII : 0x0c)|
+|`\n`| saut de ligne (ASCII : 0x0a)|
+|`\r`| retour chariot (ASCII : 0x0d)|
+|`\t`| tabulation horizontale (ASCII : 0x09)|
+|`\v`| tabulation verticale (ASCII : 0x0b)|
+|`\nnn`| valeur octale (byte)|
+|`\Xnn`| valeur hexadécimale (byte) |
+|`\unnnn`| valeur Unicode (**C++11**) |
+|`\Unnnnnnnn`| valeur Unicode (**C++11**) |
+
+Pour information, `\a` correspond au signal d'alerte (la carte mère fait un 'bip' d'alarme le plus souvent). `\?` permet d'échapper le caractère `?` lorsqu'on souhaite éviter les [trigraphes](404.md), qui ont été retirés du langage avec **C++17**.
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - escape sequences](https://en.cppreference.com/w/cpp/language/escape)
