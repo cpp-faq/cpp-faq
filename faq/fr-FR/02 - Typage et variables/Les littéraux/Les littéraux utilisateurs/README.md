@@ -24,12 +24,12 @@ void foo() {
 
 Les littéraux utilisateurs doivent commencer par un underscore `_` de manière à ne pas entrer en conflit avec les littéraux utilisateurs de la bibliothèque standard [Quels sont les littéraux utilisateurs de la bibliothèque standard ?](404.md).
 
-Les littéraux utilisateur peuvent aussi être utilisés pour leurs effets de bord :
+Les littéraux utilisateur peuvent aussi être utilisés pour leurs effets de bord. Ci-dessous, le littéral `print` permet l'affichage d'un entier ou d'un flottant :
 
 ```cpp
-void operator "" _print(const char* str)
+void operator "" _print(const char* s)
 {
-    std::cout << str << '\n';
+    std::cout << s << '\n';
 }
 
 void foo() {
@@ -61,7 +61,6 @@ Si le type de retour est libre, il existe 13 surcharges possibles de l'opérateu
  - surcharge `(const char16_t*, size_t)`.  _exemple_ : `u"Hello"_foo`.
  - surcharge `(const char32_t*, size_t)`.  _exemple_ : `U"Hello"_foo`.
  - surcharge `(const wchar_t*, size_t)`.  _exemple_ : `L"Hello"_foo`.
-
 
 ## Quels sont les littéraux utilisateurs de la bibliothèque standard ?
 

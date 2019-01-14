@@ -148,7 +148,7 @@ auto c = 'a';
 std::cout << c;
 ```
 
-Par défaut, un littéral caractère est de type `char`. Cependant, des suffixes permettent de modifier le type de la constante littérale :
+Par défaut, un littéral caractère est de type `char`. Cependant, des préfixes permettent de modifier le type de la constante littérale :
 
 ```cpp
 auto a = u8'a'; // char8_t  : encodage UTF8
@@ -220,3 +220,102 @@ Pour information, `\a` correspond au signal d'alerte (la carte mère fait un 'bi
 
 #### Liens et compléments
 - **[EN]** [cppreference.com - escape sequences](https://en.cppreference.com/w/cpp/language/escape)
+
+## Quels sont les littéraux chaîne de caractères en C++ ?
+
+Les chaînes de caractères littérales se différencient des caractères par l'usage de double quote `"` pour la délimitation, plutôt que des simples `'` :
+
+```cpp
+auto s = "Hello World !";
+std::cout << s << '\n';
+```
+
+Les chaînes de caractères littérales sont de type `const char*`, lorsque rien n'est précisé. Les suffixes `u8`, `u`, `U` et `L` permettent de définir des littérals basés sur des types caractères différents :
+
+```cpp
+auto a = u8"Hello world!"; // const char8_t[N]  : encodage UTF8
+auto b = u"Hello world!";  // const char16_t[N] : encodage UCS-2
+auto c = U"Hello world!";  // const char32_t[N] : encodage UCS-4
+auto d = L"Hello world!";  // const wchar_t[N]
+```
+
+Les préfixes `u8`, `u` et `U` sont disponibles depuis **C++11**. Avant **C++20**, le préfixe `u8` correspondait au type `const char*`.
+
+Le caractère nul `\0` est automatiquement ajouté à la fin de chaque littéral. Ainsi, `"Hello world!"` est de type `const char[13]` ([Comment créer une chaîne de caractère contenant le caractère nul '\0' ?](404.md)).
+Notez toutefois que les chaînes de caractères juxtaposées sont regroupées juste avant la compilation, le caractère nul n'est alors ajouté qu'à la fin de la chaîne composée.
+
+Les [séquence d'échappement](Quelles sont les séquences d'échappement autorisées en C++ ?) peuvent être utilisées dans les chaînes de caractères littérales.
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - string literal](https://en.cppreference.com/w/cpp/language/string_literal)
+
+## Qu'est-ce que les raw string literals ?
+
+**C++11** a introduit un nouveau type de littéraux chaînes de caractères permettant de simplifier l'écriture de chaînes contenant des caractères à échapper : les *raw string literals*.
+
+La syntaxe est de la forme suivante : `Rdelimiteur(séquence de caractères)delimiteur`. Le délimiteur est généralement `"`, mais n'importe quelle séquence de caractère (\*) peut être utilisée comme délimiteur en fonction du contenu :
+
+```cpp
+auto email_regex = u8R"((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))"; // according to RFC 5322.
+
+auto str = Rdel(("()"))del;
+```
+
+Contrairement aux chaînes de caractères littérales classiques, il n'est pas nécessaire d'échapper les caractères tels que `"` ou `\`. Seul la chaîne constituant le délimiteur (respectivement `"` et `del` dans les exemples ci-dessus) ne doivent pas être contenus dans la chaîne. De plus, le caractère de saut de ligne dans une chaîne brute est simplement inclus dans la chaîne.
+
+(\*) la norme indique que les caractères suivant ne sont pas autorisés dans le délimiteur : `(`, `)`, `\`, ainsi que les caractères de contrôle `\n`, `\t`, `\v` et `\f`. Le délimiteur ne peut excéder 16 caractères.
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - string literal](https://en.cppreference.com/w/cpp/language/string_literal)
+
+## Peut-on modifier une chaîne de caractère littérale en C++ ?
+
+La modification d'un littéral chaîne de caractère est un **comportement indeterminé** en C++ :
+
+```cpp
+auto str = const_cast<char*>("Hello");
+str[0] = 'U'; // Undefined behavior.
+```
+
+L'exemple précédent provoque une *erreur de segmentation* avec GCC 8.1 et clang 5.0 sur Ubuntu 18.1. Il s'agit du comportement le plus commun, même si certaines architectures autorisent cette modification.
+
+## Où sont stockée les chaînes de caractères littérales en C++ ?
+
+Le choix est laissé au compilateur. Très souvent, les chaînes littérales sont stockées dans une section de la mémoire en lecture seule (le segment *rodata*).
+
+Le standard impose que ces littéraux aient une durée de stockage statique (*static storage duration*), c'est-à-dire qu'ils existent pendant toute la durée du programme.
+
+## Le compilateur peut-il regrouper les chaînes de caractères littérales identiques ?
+
+Le compilateur est effectivement capable d'utiliser la même adresse pour des chaînes identiques. Si ces chaînes sont dans des unités de traduction différentes, l'éditeur de liens (*linker*) peut lui aussi choisir d'effectuer le regroupement :
+
+```cpp
+auto s = "Hello";
+auto s2 = "Hello";
+auto s3 = "World";
+
+std::cout << (void*)s << " " << (void*)s2 << " " << (void*)s3 << '\n';
+// GCC 8.1 :   0x400944 0x400944 0x40094c
+// Clang 5.0 : 0x400924 0x400924 0x40092a
+```
+
+#### Liens et compléments
+- **[EN]** [stackoverflow.com - How Do C++ Compilers Merge Identical String Literals](https://stackoverflow.com/questions/6281835/how-do-c-compilers-merge-identical-string-literals)
+
+## Le compilateur peut-il regrouper les chaînes de caractères qui se superposent ?
+
+Le compilateur est effectivement autorisé (sans obligation) à le faire. Dans l'exemple suivant, on observe que la chaîne `"valid"` est en fait une sous-partie de la chaîne `"invalid"` car le compilateur a effectivement fait ce choix :
+
+```cpp
+auto s = "invalid";
+auto s2 = "valid";
+
+std::cout << (void*)s << " " << (void*)s2 << '\n';
+std::cout << std::boolalpha << (s + 2 == s2) << '\n';
+// Clang 5.0 :
+// 0x400994 0x400996
+// true
+```
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - string literal](https://en.cppreference.com/w/cpp/language/string_literal)
