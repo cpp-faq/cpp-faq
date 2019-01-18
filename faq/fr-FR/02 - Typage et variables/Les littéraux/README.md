@@ -6,9 +6,27 @@
 
 **En cours d'écriture**
 
-## Quels sont les litéraux booléens en C++ ?
+## Qu'est-ce qu'un littéral ?
 
-`true` et `false` sont les deux litéraux booléens en C++. Cependant, en raison des règles de [conversion implicites](404), des constantes entières peuvent être utilisée pour initialiser des booléens. Toute valeur différente est converti en `true` et une valeur nulle est convertie en `false` :
+Un littéral (une *constante littérale*) correspond a une donnée constante dans le code source du programme. Un littéral, comme une variable, a un type.
+
+```
+int i = 22; // la variable i est initialisée à partir de la constante littérale entière 22.
+auto salut = "Salut"; // la variable salut est initialisée à partir de la chaîne de caractère littérale "Salut".
+foo(true); // la constante littéral booléenne true est passée en tant qu'argument à la fonction foo.
+```
+
+Notez qu'une variable constante et un littéral sont deux choses distinctes. Une variable constante est une variable dont la valeur ne peut être modifiée, mais elle occupe tout de même de la place en mémoire. Un littéral n'est qu'une valeur fixe qui sera utilisée dans le programme.
+
+Le langage **C++** défini des constantes littérales pour les types primitifs, par exemple les constantes entières (`88`, `92UL`, `0b0010110`...), les littéraux caractères (`'H'`, `'\n'`...), `true`, `false`, `nullptr`... **C++11** a également introduit les littéraux utilisateurs, qui permettent de définir des littéraux de types personalisés. La bibliothèque standard définis d'ailleurs des littéraux utilisateurs pour certains types standards tels que `std::string` [Quels sont les littéraux utilisateurs de la bibliothèque standard ?](404.md).
+
+#### Liens et compléments
+  - **[EN]** [wikipedia.org - Literal (Computer programming)](https://en.wikipedia.org/wiki/Literal_%28computer_programming%29)
+
+
+## Quels sont les littéraux booléens en C++ ?
+
+`true` et `false` sont les deux littéraux booléens en C++. Cependant, en raison des règles de [conversion implicites](404), des constantes entières peuvent être utilisée pour initialiser des booléens. Toute valeur différente est converti en `true` et une valeur nulle est convertie en `false` :
 
 ```cpp
 bool b = 0;
@@ -248,6 +266,7 @@ Les [séquence d'échappement](Quelles sont les séquences d'échappement autori
 
 #### Liens et compléments
 - **[EN]** [cppreference.com - string literal](https://en.cppreference.com/w/cpp/language/string_literal)
+- [Comment créer une string contenant un '\0' ?](404.md)
 
 ## Qu'est-ce que les raw string literals ?
 
@@ -319,3 +338,46 @@ std::cout << std::boolalpha << (s + 2 == s2) << '\n';
 
 #### Liens et compléments
 - **[EN]** [cppreference.com - string literal](https://en.cppreference.com/w/cpp/language/string_literal)
+
+## Dois-je préférer NULL ou nullptr ?
+
+`nullptr` a été introduit avec **C++11** et présente des avantages par rapport à la macro `NULL`. Il s'agit du littéral représentant le pointeur nul et est de type `std::nullptr_t`.
+
+`nullptr` n'est pas implicitement convertible en entier, contrairement à `NULL` qui est le plus souvent défini comme `(void*)0` (certains compilateurs récents utilisent aussi `#define NULL nullptr`). Cela permet d'éviter des problèmes de surcharge :
+
+```cpp
+foo(int*);
+foo(int);
+
+foo(NULL); // Appelle foo(int).
+foo(nullptr); // Appelle foo(int*).
+```
+
+Lorsqu'on travaille avec des templates, la constante `NULL` peut également provoquer des comportements inattendus, comme le montre cet exemple issu de [cppreference](https://en.cppreference.com/w/cpp/language/nullptr) :
+
+```cpp
+#include <iostream>
+
+template<class F, class A>
+void fwd(F f, A a)
+{
+    f(a);
+}
+
+void g(int* i)
+{
+    std::cout << "Function g called\n";
+}
+
+int main()
+{
+    g(NULL);           // Ok
+    g(0);              // Ok
+
+    fwd(g, nullptr);   // Ok
+//  fwd(g, NULL);  // ERROR: No function g(int)
+}
+```
+
+#### Liens et compléments
+- **[EN]** [cppreference.com - nullptr, the pointer literal](https://en.cppreference.com/w/cpp/language/nullptr)

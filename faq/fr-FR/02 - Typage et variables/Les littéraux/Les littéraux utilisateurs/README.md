@@ -8,7 +8,7 @@
 
 ## Qu'est ce que les littéraux utilisateurs ?
 
-Les littéraux utilisateur (*user-defined literals*) correspondent à des suffixes littéraux définis par l'utilisateur permettant de créer des littéraux personnalisés. Ils ont été introduit avec **C++11**.
+Les littéraux utilisateur (*user-defined literals*) correspondent à des suffixes littéraux définis par l'utilisateur permettant de créer des littéraux personnalisés. Ils ont été introduits avec **C++11**.
 
 Ci suit l'exemple d'un littéral utilisateur permettant d'obtenir un entier `short` :
 ```cpp
