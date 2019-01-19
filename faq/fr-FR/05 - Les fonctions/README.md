@@ -35,6 +35,34 @@ Pour plus d'information sur les fonctionnement du **function-try-block** et des 
 
 ## Quelle est la différence entre f(void); et f() ?
 
+En **C++**, `f(void)` et `f()` sont strictement équivalent.
+
+Le **C** en revanche, autorise la déclaration d'une fonction sans en préciser le prototype :
+
+```c
+// C++ : déclaration de la fonction f ne prenant pas d'argument.
+// C   : déclaration de la fonction f, son prototype sera déclaré par la suite.
+void f();
+
+// C++ : déclaration de la fonction g ne prenant pas d'argument.
+// C   : déclaration de la fonction g ne prenant pas d'argument.
+void g(void);
+
+// C++ : déclaration d'une surcharge de la fonction f, prenant un int et un double en argument.
+// C   : déclaration de la fonction f et de son prototype, f prends un int et un double en argument.
+void f(int i, double d);
+
+// C++ : déclaration d'une surcharge de la fonction g, prenant un int et un double en argument.
+// C   : erreur, g a déjà été déclarée et ne prends aucun argument.
+void g(int i, double d);
+```
+
+̀`f(void)` en **C** est donc la manière correcte de déclarer une fonction ne prenant aucun argument, tandis que `f()` déclare la fonction sans en préciser les éventuels paramètres.
+
+
+#### Liens et compléments
+ - [stackoverflow.com | Understanding the difference between f() and f(void) in C and C++ once and for all](https://stackoverflow.com/questions/13319492/understanding-the-difference-between-f-and-fvoid-in-c-and-c-once-and-for-a)
+
 ## Quel est l'intérêt d'un return dans une fonction retournant void ?
 
 Si la question porte sur l'instruction `return;`, alors il s'agit simplement d'un moyen de terminer la fonction dans le cas d'une fonction `void` :
