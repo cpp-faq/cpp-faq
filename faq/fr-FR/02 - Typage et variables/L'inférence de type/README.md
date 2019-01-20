@@ -25,4 +25,21 @@ std::cout << add(0i, 1i) << std::endl; // (2)
 
 Dans le premier appel *(1)*, les arguments déduits sont `double` et `int`, le type de retour est donc `double`. Dans le second cas (2), le compilateur déduit `std::complex<double>` pour les deux arguments et donc le type de retour.
 
-Les *generic lambdas* sont donc l’équivalent d’une fonction template pour les lambdas (dans la fonction `add`, le compilateur lèverait une erreur si les types inférés ne supportaient pas l’addition). Le mot clef `auto` est ici utilisé pour préciser l’inférence de type pour les arguments de la fonction. Puisque le type de retour n’est pas précisé, celui-ci est également déduit à partir de l’expression du return.
+Les *generic lambdas* sont donc l’équivalent d’une fonction template pour les lambdas (dans la fonction `add`, le compilateur lèverait une erreur si les types inférés ne supportaient pas l’addition). Le mot clef `auto` est ici utilisé pour préciser l’inférence de type pour les arguments de la fonction. Puisque le type de retour n’est pas précisé, celui-ci est également déduit à partir de l’expression du `return`.
+
+## Peut-on utiliser auto avec la syntaxe d’initialisation uniforme ?
+
+Depuis **C++14**, il est en effet possible d’utiliser `auto` et l’*uniform initialization syntax* conjointement :
+
+```cpp
+auto i{ 0 }; // i est un int.
+auto i = 0; // i est un int.
+auto il = {0}; // i est du type ‘std::initialization_list<int>’.
+```
+
+En **C++11** en revanche, le comportement n’est pas celui attendu :
+
+```cpp
+auto i{ 0 }; // i est du type ‘std::initialization_list<int>’.
+auto i = 0; // i est un int.
+```
