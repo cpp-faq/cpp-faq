@@ -111,7 +111,6 @@ L'opérateur de conversion ```const_cast``` permet également d'enlever la quali
  - **[EN]** [cppreference.com | cv-qualifiers](http://en.cppreference.com/w/cpp/language/cv)
  - [A quoi sert l'opérateur de conversion const_cast ?](https://github.com/cpp-faq/cpp-faq/tree/develop/faq/fr-FR/.faq/404.md)
 
-
  ## Que signifie le mot clef restrict ?
 
  Le mot clef ```restrict``` n'est **pas** un mot-clef en C++ et n'a aucune signification particulière, c'est un mot-clef spécifique au *langage C*.
