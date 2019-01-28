@@ -45,3 +45,12 @@ std::size_t strlen(const char* s)
     return size;      
 }
 ```
+
+De plus, la post-incrémentation a une priorité supérieure à la post-incrémentation. Ces explications sont également valables pour la pré/post-décrémentation.
+
+## Quelle est la priorité des différents opérateurs C++ ?
+
+Ce [tableau](https://en.cppreference.com/w/cpp/language/operator_precedence) sur *cppreference.com* donne la priorité et l'associativité des différents opérateurs.
+
+#### Liens et compléments
+- **[EN]** [cppreference.com | Operator Precedence](https://en.cppreference.com/w/cpp/language/operator_precedence)
