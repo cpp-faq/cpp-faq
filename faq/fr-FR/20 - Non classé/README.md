@@ -1,10 +1,38 @@
 # Non classé
 
-Cette section comporte les questions qui ne sont pas encore classées
+Cette section comporte les questions qui ne sont pas encore classées.
 
 ### Sommaire
 
 **En cours d'écriture**
+
+
+## Comment tester si un std::optional<T> contient une valuer ?
+
+`std::optional<T>` propose la fonction membre `has_value` qui est précisément destinée à cela :
+
+```cpp
+if(opt.has_value())
+    std::cout << opt << std::endl;
+```
+
+Tout `optional` est aussi implicitement convertible en `bool` dans le contexte d'une condition :
+
+```cpp
+if(opt)
+    std::cout << opt << std::endl;
+```
+
+Enfin, on peut également comparer un `optional` avec `std::nullopt` :
+
+```
+if(opt != std::nullopt)
+    std::cout << opt << std::endl;
+```
+
+#### Liens et compléments
+- [[EN] cppreference.com | std::optional::operator bool, std::optional::has_value](https://en.cppreference.com/w/cpp/utility/optional/operator_bool)
+ - [[EN] cppreference.com | operator==, !=, <, <=, >, >=(std::optional)](https://en.cppreference.com/w/cpp/utility/optional/operator_cmp)
 
 ## Comment récupérer la valeur d'un std::optional<T> ?
 
