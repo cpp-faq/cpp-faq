@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# # vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.synced_folder "../FAQ", "/opt/lazart/build"
+    config.vm.synced_folder "use-cases", "/opt/lazart/use-cases"
+    config.vm.hostname = "cpp-faq"
+
+    config.vm.provider "docker" do |docker|
+        #docker.build_dir = "."
+        #docker.build_args = "-t=lazart/lazart"
+        docker.image = "lazart/lazart:dev"
+        docker.name = "c_lazart"
+        docker.cmd = ["tail", "-f", "/dev/null"]
+    end
+end
